@@ -3,46 +3,73 @@ var DinnerModel = function() {
  
 	//TODO Lab 2 implement the data structure that will hold number of guest
 	// and selected dinner options for dinner menu
+	var numberOfGuests;
+	var menu = {"starter": null, "main dish": null, "dessert":null};
 
 
 	this.setNumberOfGuests = function(num) {
-		//TODO Lab 2
+		numberOfGuests = num;
 	}
 
 	// should return 
 	this.getNumberOfGuests = function() {
-		//TODO Lab 2
+		return numberOfGuests;
 	}
 
 	//Returns the dish that is on the menu for selected type 
 	this.getSelectedDish = function(type) {
-		//TODO Lab 2
+		return menu[type];
 	}
 
 	//Returns all the dishes on the menu.
 	this.getFullMenu = function() {
-		//TODO Lab 2
+		return menu;
 	}
 
-	//Returns all ingredients for all the dishes on the menu.
+	//Returns all ingredients for all the dishes on the menu. //OBS Lägg till .name om endast namnet på ingrediensen sökes
 	this.getAllIngredients = function() {
-		//TODO Lab 2
+		var ingredients = [];
+		for(var dish in menu){
+			for(ingredient in menu[dish].ingredients){
+				ingredients.push(menu[dish].ingredients[ingredient]);
+			}
+		}
+		return ingredients;
 	}
 
 	//Returns the total price of the menu (all the ingredients multiplied by number of guests).
 	this.getTotalMenuPrice = function() {
-		//TODO Lab 2
+		var price = 0;
+		for(var dish in menu){
+			for(ingredient in menu[dish].ingredients){
+				price += menu[dish].ingredients[ingredient].price;
+			}
+		}
+		return price;
 	}
 
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
 	this.addDishToMenu = function(id) {
-		//TODO Lab 2 
+		var addedDish;
+		for(var dish in dishes){
+			if(dishes[dish].id === id){
+				addedDish = dishes[dish];
+				break;
+			}
+		}
+		if(addedDish){
+			menu[addedDish.type] = addedDish;	
+		}
 	}
 
 	//Removes dish from menu
 	this.removeDishFromMenu = function(id) {
-		//TODO Lab 2
+		for(var dish in menu){
+			if(menu[dish].id === id){
+				menu[dish] = null;
+			}
+		}
 	}
 
 	//function that returns all dishes of specific type (i.e. "starter", "main dish" or "dessert")
