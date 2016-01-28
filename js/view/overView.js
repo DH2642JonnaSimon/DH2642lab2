@@ -1,3 +1,4 @@
+
 document.getElementById("viewHolder").innerHtml = '<div class="row row-eq-height" id="viewHolder">
 	<div class="col-xs-4 col-sm-2 col-md-2" id="sideMenuView">
 	Number of guests: <span id="numberOfGuests"></span><br>
