@@ -1,5 +1,7 @@
 //ExampleView Object constructor
 var ExampleView = function (container) {
+
+	document.getElementById('mydivtag').innerHTML = "<li><a href=\"someLink\">Some Link</a></li> ";
 	
 	// Get all the relevant elements of the view (ones that show data
   	// and/or ones that responed to interaction)
