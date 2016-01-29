@@ -1,15 +1,15 @@
 //ExampleView Object constructor
-var ExampleView = function (container) {
-
-	document.getElementById('mydivtag').innerHTML = "<li><a href=\"someLink\">Some Link</a></li> ";
+var startView = function (container) {
 	
 	// Get all the relevant elements of the view (ones that show data
   	// and/or ones that responed to interaction)
-	this.numberOfGuests = container.find("#numberOfGuests");
-	this.plusButton = container.find("#plusGuest");
-	this.minusButton = container.find("#minusGuest");
+	this.cnt = container;
 	
-	this.numberOfGuests.html("Hello World");
 	
+	this.cnt.html('<div id="startView" class = "well well-lg"><h2 style="border-bottom: solid 1px;">A Home Dinner Service</h2><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p><div style="margin-top: 10%;margin-bottom: 20px:">Start Quickly:<br><button id="newDinner" type="button" class="btn btn-warning btn-responsive">Create new dinner</button></div></div>');
+
+	this.hide = function(){
+		$("#startView").hide();
+	}
 }
  
