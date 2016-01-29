@@ -9,5 +9,6 @@ var mainController = function(model,startView, sideView, selectDishView){
 		this.start_view.hide();
 		this.side_view.show();
 		this.select_dish_view.show();
+		$("#jumbotron").css("background-color", "rgba(0,0,0,0.7)");
 	}
 }
