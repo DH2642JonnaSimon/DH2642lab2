@@ -14,7 +14,7 @@ var selectDishView = function(container){
 	}
 
 	this.selectDishes = function(dishes){
-		alert("Hejsan");
+		//alert("Hejsan");
 		var list = '';
 		//var dish = JSON.parse(dishes);
 		//var dish = JSON.stringify(dishes);
@@ -23,12 +23,14 @@ var selectDishView = function(container){
 
 		var dish = dishes;
 
-		console.log(dish.name);
-
-		for(var x in dish.name){
-			console.log(x);
+		//console.log(dish.name);
+		for(var x in dish){
+			if(!isNaN(x)){
+				console.log(dish[x].name);
+			}
 		}
-		console.log(dish[0].name);
+		
+		//console.log(dish[0].name);
 	
 
 		//var parsed = JSON.stringify(dish);
