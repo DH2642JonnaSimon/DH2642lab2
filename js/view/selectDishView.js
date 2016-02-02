@@ -31,7 +31,12 @@ var selectDishView = function(container){
 		}
 		
 		//console.log(dish[0].name);
-	
+
+	/*	console.log(dish.name);
+
+		for(var x in dish.name){
+			console.log(x);
+		}*/
 
 		//var parsed = JSON.stringify(dish);
 		//alert(parsed);
@@ -46,14 +51,8 @@ var selectDishView = function(container){
 /*
 		var parsed = JSON.parse(dish);
 
-		consol.log(parsed);
+		consol.log(parsed);*/
 
-		var arr = [];
-
-		for(var x in parsed){
- 			 arr.push(parsed[x]);
-			}
-		console.log(arr);*/
 		//bygg table med 3 kolumner för varje rad, lägg info om varje dish på ett snyggt sätt i cellerna
 
 	}
