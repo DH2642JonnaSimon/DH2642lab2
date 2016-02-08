@@ -1,6 +1,6 @@
 var selectDishView = function(container){
 	this.cnt = container;
-	this.cnt.append ('<div class="col-xs-7 col-sm-9 col-md-9" id="selectDishView" style="height:100%;"><div style="height:20%;background-color: rgba(246, 178, 107, 0.7);"><h3 style="margin-left: 10px;margin-right: 20px;border-bottom: solid 1px;">SELECT DISH</h3><form class="form-inline"><div class="form-group" style="margin-left: 10px;"><div class="form-group col-xs-4" style="padding: 0px;"><input id="searchInput" class="form-control" type="text" style="padding: 0px;position:relative;float:right;margin-right: 0px;margin-left: 100px; width: 100%;"></div><div class="form-group col-xs-4" style="padding: 0px;"><button id="searchButton" type="button" class="btn btn-warning btn-responsive" style="paddin: 0px;">Search</button></div><div class="form-group col-xs-4" style="padding: 0px;"><select class="form-control" id="selectInput" style="margin-right: 20px; width: 100px;"><option value="starter">Starter</option><option value="main dish">Main</option><option value="dessert">Dessert</option></select></div></div></div><form><div id ="viewDishes" style="height:80%;"></div></div>');
+	this.cnt.append ('<div id="selectDishView" class="col-xs-7 col-sm-9 col-md-9" style="margin: 0px;height:100%;"><div id="selectDishBackground" style="background-color: rgba(246, 178, 107, 0.7);padding: 10px 10px 10px 10px;"><h3 style="border-bottom: solid 1px;">SELECT DISH</h3><table class="table-responsive table-condensed"><tr><td style="padding-right: 0px;"><input id="searchInput" class="form-control " type="text" style="padding: 0px;margin-right: 0px;"></td><td style="padding-left: 0px;"><button id="searchButton" type="button" class="btn btn-warning btn-responsive" style="">Search</button></td><td><select class="form-control" id="selectInput"><option value="starter">Starter</option><option value="main dish">Main</option><option value="dessert">Dessert</option></select></td></tr></table></div><div id ="viewDishes" style=""></div></div>');
 
 	$("#selectDishView").hide();
 
@@ -9,51 +9,48 @@ var selectDishView = function(container){
 	}
 
 
+
 	this.hide = function(){
 		$("#selectDishView").hide();
 	}
 
 	this.selectDishes = function(dishes){
-		//alert("Hejsan");
-		var list = '';
-		//var dish = JSON.parse(dishes);
-		//var dish = JSON.stringify(dishes);
-		//alert(dish);
+		$("#viewDishes").empty();
 
-
+		var listId =[];
+		var listName =[];
+		var listDescription =[];
+		var listImage =[];
 		var dish = dishes;
-
-		//console.log(dish.name);
+		var count = 0;
+        var str = "";
+        
+        str += "<div class='table pre-scrollable' id='andra' style='margin: 0px;'>";
 		for(var x in dish){
 			if(!isNaN(x)){
-				console.log(dish[x].name);
+			    if(count == 0){
+			        str += "<div class='row'>";
+			    }
+				str += '<div class="col-xs-12 col-sm-12 col-md-3 " style="vertical-align: top;text-align: center;margin: 0 auto;"><div style="margin:0 auto;width: 180px;"><div id="' +dish[x].id + '" class="clickableDish" style="background-color:grey;display: table;margin:0 auto;"><div style="overflow: hidden;width: 180px;"><image class="img-thumbnail " src="images/' + dish[x].image + '" style="height:180px;width: 180px;"></image></div><h3 class="" style="">' + dish[x].name + '</h3></div><p style="text-align: left;width: 180px;">' + dish[x].description + '</p></div></div>';
+				count++;
+				if(count == 4){
+				    str +="</div>";
+				    count = 0;
+				}
 			}
 		}
 		
-		//console.log(dish[0].name);
-
-	/*	console.log(dish.name);
-
-		for(var x in dish.name){
-			console.log(x);
-		}*/
-
-		//var parsed = JSON.stringify(dish);
-		//alert(parsed);
+		if(count != 0){
+		    for(var i = count; count != 4; count++){
+		        str += "<div style='20%'><div></div></div>";
+		    }
+		    str += "</div>";
+		}
+		
+		str += "</table></div>";
+		$("#viewDishes").append(str);
 		
 
-		//console.log();
-		
-		//$("#viewDishes").html(dish);
-		//$("#viewDishes").html(dishes[0].name);
-
-		//var json = '{"0":"1","1":"2","2":"3","3":"4"}';
-/*
-		var parsed = JSON.parse(dish);
-
-		consol.log(parsed);*/
-
-		//bygg table med 3 kolumner för varje rad, lägg info om varje dish på ett snyggt sätt i cellerna
 
 	}
 }
