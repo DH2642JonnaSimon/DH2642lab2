@@ -9,15 +9,15 @@ var lastOverview = function (container) {
 	$("#lastOverview").hide();
 
 	this.hide = function(){
-		console.log("banan1");
+		$("#lastOverview").hide();
 }
 	this.show = function(){
-		console.log("banan2");
+		$("#lastOverview").show();
 }
 
 this.overviewMenu = function(finalMenu){
 	console.log(finalMenu);
-
+		$("#lastOverview").show();
 		var count = 0;
 
 	    var str = "";
