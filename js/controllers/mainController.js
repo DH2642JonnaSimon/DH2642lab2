@@ -1,10 +1,11 @@
-var mainController = function(model,startView, sideView, selectDishView, dishPreview, lastOverview){
+var mainController = function(model,startView, sideView, selectDishView, dishPreview, lastOverview, fullRecipe){
 	this.dinner_model = model;
 	this.start_view = startView;
 	this.side_view = sideView;
 	this.select_dish_view = selectDishView;
 	this.dish_preview = dishPreview;
 	this.last_overview = lastOverview;
+	this.full_recipe_view = fullRecipe;
 
 
 	this.newDinner = function(){
@@ -82,5 +83,19 @@ var mainController = function(model,startView, sideView, selectDishView, dishPre
 		this.side_view.hide();
 		this.select_dish_view.hide();
 		this.last_overview.show();
+	}
+
+	this.lastDishBack = function(){
+		console.log("inne i main");
+		this.last_overview.hide();
+		this.side_view.show();
+		this.select_dish_view.show();
+	}
+
+	this.fullRecipeMain = function(){
+		console.log("fullRecipe");
+		this.last_overview.hide();
+		var menu = model.getFullMenu();
+		this.full_recipe_view.show(menu);
 	}
 }
