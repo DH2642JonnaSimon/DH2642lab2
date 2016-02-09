@@ -94,7 +94,6 @@ div
 @media screen and (max-height: 600px) 
 {
 
-<<<<<<< HEAD
   .well{
     width: 100%;
     height: 100%;
@@ -105,34 +104,17 @@ div
   position: relative; 
   
 }
- 
-=======
-  width: 100%;
-    height: 50vh;
-    margin-top: 10vh;
->>>>>>> origin/MVC
+
     #buttonInWell{
     position: relative;
     margin-top: 0%;
   }
-<<<<<<< HEAD
+
 
   h1{margin-top: 0px; padding: 0; font-size: 20px;}
   h2{font-size: 18px;}
   #titPara{font-size: 10px;}
 }
-=======
-  .jumbotron
-  {
-  	height: 60%;
-    margin-bottom: 0px;
-    background-color: rgba(246, 178, 107, 0.3);
-  }
-  h1{margin-top: 0px; padding: 0;}
-}
-
-
->>>>>>> origin/MVC
 
 h1{margin-top: 0px; padding: 0;}
 
@@ -147,20 +129,13 @@ h1{margin-top: 0px; padding: 0;}
 
 .well{
   background-color: rgba(255, 255, 255, 0.3);
-  position: relative; 
-<<<<<<< HEAD
+  position: relative;
   
 }
 
 .jumbotron{margin-bottom: 0px; background-color: rgba(246, 178, 107, 0.7);color: white; padding-bottom: 0px;}
 body, html{height: 100%;}
-=======
-  min-height: 311px;
-}
 
-.jumbotron{margin-bottom: 0px; background-color: rgba(246, 178, 107, 0.7);color: white;height: 20%;}
-body, html{height: 100%;min-height:800px !important; min-width: 360px;}
->>>>>>> origin/MVC
 body 
 {
   background-image: url("../images/background.jpg");
@@ -191,12 +166,7 @@ body
   h1{margin-top: 0px; padding: 0;}
 }
 
-<<<<<<< HEAD
-=======
-  h1{margin-top: 0px; padding: 0;}
-}
 
->>>>>>> origin/MVC
 @media screen and (min-width: 620px){
 	#titPara{
 		margin-bottom: 10px;
@@ -225,11 +195,8 @@ body
 .row{margin-right: 0px; margin-left: 0px; padding: 0;}
 
 #selectDishView{
-<<<<<<< HEAD
   padding: 0px;
-=======
-  padding: 0;
->>>>>>> origin/MVC
+
   width: 100%;
 }
 

@@ -15,5 +15,4 @@ var previewController = function(mc, model, pv){
 	    mc.denyDish(dishClicked);
 	});
 
-
 }

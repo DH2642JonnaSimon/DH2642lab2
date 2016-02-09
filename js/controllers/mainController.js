@@ -1,9 +1,11 @@
-var mainController = function(model,startView, sideView, selectDishView, dishPreview){
+var mainController = function(model,startView, sideView, selectDishView, dishPreview, lastOverview){
 	this.dinner_model = model;
 	this.start_view = startView;
 	this.side_view = sideView;
 	this.select_dish_view = selectDishView;
 	this.dish_preview = dishPreview;
+	this.last_overview = lastOverview;
+	console.log('inne i funktionen i maincontrollern');
 
 
 	this.newDinner = function(){
@@ -11,6 +13,8 @@ var mainController = function(model,startView, sideView, selectDishView, dishPre
 		this.side_view.show();
 		this.select_dish_view.show();
 		$("#jumbotron").css("background-color", "rgba(0,0,0,0.7)");
+		console.log('inne i funktion newDinner i maincontrollern');
+
 	}
 	
 	this.previewDish = function(dish){
@@ -37,6 +41,7 @@ var mainController = function(model,startView, sideView, selectDishView, dishPre
 	this.confirmDish = function(dishClick){
 	    this.dish_preview.hide();
 	    var menu = model.getFullMenu();
+	    console.log(menu);
 	    var count = 0;
 	    var prices = [];
 	    for(d in menu){
@@ -66,5 +71,15 @@ var mainController = function(model,startView, sideView, selectDishView, dishPre
 	    var totalPrice = model.getTotalMenuPrice();
 	    this.side_view.updateConfirmed(menu, prices, totalPrice);
 	    this.select_dish_view.show();
+	}
+
+	this.lastOverview = function(dish){
+	   console.log('inne i lastovervieiw i maincontrolerna');
+	}
+
+	this.lastDishInfo = function(){
+		this.side_view.hide();
+		this.select_dish_view.hide();
+		this.last_overview.show();
 	}
 }

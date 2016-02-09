@@ -23,4 +23,11 @@ var sideController = function(mc, model, sv){
   			$("#numberOfGuests").html(model.getNumberOfGuests());
 	});
 
+/*  $( "#confirmDinner" ).click(function() {
+      this.hide = function(){
+        $("#sideController").hide();
+  }
+  });*/
+
+
 }
