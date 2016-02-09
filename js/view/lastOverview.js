@@ -6,7 +6,7 @@ var lastOverview = function (container) {
 
 	this.cnt = container;
 	this.cnt.append ('<div id="lastOverview" class="col-xs-7 col-sm-9 col-md-9" style="margin: 0px;height:100%;"></div>');
-
+	$("#lastOverview").hide();
 
 	this.hide = function(){
 		console.log("banan1");
