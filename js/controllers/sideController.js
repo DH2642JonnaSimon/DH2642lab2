@@ -2,6 +2,7 @@ var sideController = function(mc, model, sv){
 	this.mainController = mc;
 	this.dm = model;
 	this.side_view = sv;
+	this.dm.setNumberOfGuests(1);
 	
 	$( "#guestsInput" ).change(function() {
 			var val = $("#guestsInput").val();
@@ -18,16 +19,19 @@ var sideController = function(mc, model, sv){
     	       }
     	       count++;
     	    }
+    	    
+    	    var pendingDish = $(".confirm").attr("id");
+    	    
+    	    pendingDishen = model.getDish(pendingDish);
     	    var totalPrice = model.getTotalMenuPrice();
-  			sv.updateConfirmed(menu, prices, totalPrice);
+    	    if(pendingDish == null || pendingDish == "undefined" || pendingDish == "" || pendingDish == "confirm" || pendingDish == "f"){
+    	        sv.updateConfirmed(menu, prices, totalPrice);
+    	    }else{
+    	        var dishPrice = model.getDishPrice(pendingDishen);
+    	        sv.updatePending(pendingDishen, dishPrice, menu, totalPrice, prices);
+    	        mc.updatedNumberOfGuests(val);
+    	    }
   			$("#numberOfGuests").html(model.getNumberOfGuests());
 	});
-
-/*  $( "#confirmDinner" ).click(function() {
-      this.hide = function(){
-        $("#sideController").hide();
-  }
-  });*/
-
 
 }

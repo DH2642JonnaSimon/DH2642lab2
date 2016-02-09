@@ -1,11 +1,9 @@
-var mainController = function(model,startView, sideView, selectDishView, dishPreview, lastOverview){
+var mainController = function(model,startView, sideView, selectDishView, dishPreview){
 	this.dinner_model = model;
 	this.start_view = startView;
 	this.side_view = sideView;
 	this.select_dish_view = selectDishView;
 	this.dish_preview = dishPreview;
-	this.last_overview = lastOverview;
-	console.log('inne i funktionen i maincontrollern');
 
 
 	this.newDinner = function(){
@@ -13,8 +11,6 @@ var mainController = function(model,startView, sideView, selectDishView, dishPre
 		this.side_view.show();
 		this.select_dish_view.show();
 		$("#jumbotron").css("background-color", "rgba(0,0,0,0.7)");
-		console.log('inne i funktion newDinner i maincontrollern');
-
 	}
 	
 	this.previewDish = function(dish){
@@ -31,17 +27,17 @@ var mainController = function(model,startView, sideView, selectDishView, dishPre
 	       count++;
 	   }
 	   var guests = model.getNumberOfGuests();
+	   
 	   if(guests == "" || guests == null || guests =="undefiend"){
 	       guests = 1;
 	   }
 	   this.side_view.updatePending(dish, pendingPrice, menu, totalPrice, prices);
-	   this.dish_preview.showDish(dish, guests);
+	   this.dish_preview.showDish(dish, guests, pendingPrice);
 	}
 	
 	this.confirmDish = function(dishClick){
 	    this.dish_preview.hide();
 	    var menu = model.getFullMenu();
-	    console.log(menu);
 	    var count = 0;
 	    var prices = [];
 	    for(d in menu){
@@ -56,7 +52,6 @@ var mainController = function(model,startView, sideView, selectDishView, dishPre
 	
 	this.denyDish = function(dishClicked){
 	    this.dish_preview.hide();
-        alert(dishClicked.name);
 	    model.removeDishFromMenu(dishClicked.id);
 	    var menu = model.getFullMenu();
 	    var count = 0;
@@ -72,14 +67,13 @@ var mainController = function(model,startView, sideView, selectDishView, dishPre
 	    this.side_view.updateConfirmed(menu, prices, totalPrice);
 	    this.select_dish_view.show();
 	}
-
-	this.lastOverview = function(dish){
-	   console.log('inne i lastovervieiw i maincontrolerna');
-	}
-
-	this.lastDishInfo = function(){
-		this.side_view.hide();
-		this.select_dish_view.hide();
-		this.last_overview.show();
+	
+	this.updatedNumberOfGuests = function(guests){
+	    var id = $(".confirm").attr("id");
+	    if(id != null || id!="" || id!="undefined"){
+	        var dish = model.getDish(id);
+	        var pendingPrice = model.getDishPrice(dish);
+	        this.dish_preview.guestsUpdated(dish, guests, pendingPrice);
+	    }
 	}
 }

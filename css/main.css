@@ -19,10 +19,6 @@ div
 	}
 
 
-  .jumbotron{
-  	height: 10%;
-  }
-
 
   .buttonInWell{margin-top: 2%;}
 
@@ -104,12 +100,11 @@ div
   position: relative; 
   
 }
-
+ 
     #buttonInWell{
     position: relative;
     margin-top: 0%;
   }
-
 
   h1{margin-top: 0px; padding: 0; font-size: 20px;}
   h2{font-size: 18px;}
@@ -129,13 +124,12 @@ h1{margin-top: 0px; padding: 0;}
 
 .well{
   background-color: rgba(255, 255, 255, 0.3);
-  position: relative;
+  position: relative; 
   
 }
 
 .jumbotron{margin-bottom: 0px; background-color: rgba(246, 178, 107, 0.7);color: white; padding-bottom: 0px;}
 body, html{height: 100%;}
-
 body 
 {
   background-image: url("../images/background.jpg");
@@ -166,7 +160,6 @@ body
   h1{margin-top: 0px; padding: 0;}
 }
 
-
 @media screen and (min-width: 620px){
 	#titPara{
 		margin-bottom: 10px;
@@ -196,7 +189,6 @@ body
 
 #selectDishView{
   padding: 0px;
-
   width: 100%;
 }
 
@@ -237,7 +229,6 @@ body
 	    height:100% !important;
 	}
 }
-
 
 
 

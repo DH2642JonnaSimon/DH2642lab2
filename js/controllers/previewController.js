@@ -5,14 +5,17 @@ var previewController = function(mc, model, pv){
 
 	$("#confirm").click(function() {
 	    var dishID = $(this).attr("id");
+	    $(".confirm").attr("id","f");
         var dishClick = model.getDish(dishID);
 		mc.confirmDish(dishClick);
 	});
 	
 	$("#back").click(function() {
 	    var dishID = $(this).attr("id");
+	    $(".confirm").attr("id","f");
         var dishClicked = model.getDish(dishID);
 	    mc.denyDish(dishClicked);
 	});
+
 
 }
