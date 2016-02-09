@@ -1,9 +1,10 @@
-var mainController = function(model,startView, sideView, selectDishView, dishPreview){
+var mainController = function(model,startView, sideView, selectDishView, dishPreview, lastOverview){
 	this.dinner_model = model;
 	this.start_view = startView;
 	this.side_view = sideView;
 	this.select_dish_view = selectDishView;
 	this.dish_preview = dishPreview;
+	this.last_overview = lastOverview;
 
 
 	this.newDinner = function(){
@@ -75,5 +76,11 @@ var mainController = function(model,startView, sideView, selectDishView, dishPre
 	        var pendingPrice = model.getDishPrice(dish);
 	        this.dish_preview.guestsUpdated(dish, guests, pendingPrice);
 	    }
+	}
+
+	this.lastDishInfo = function(){
+		this.side_view.hide();
+		this.select_dish_view.hide();
+		this.last_overview.show();
 	}
 }
