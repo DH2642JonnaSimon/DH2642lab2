@@ -99,4 +99,10 @@ var mainController = function(model,startView, sideView, selectDishView, dishPre
 		var numOfGuest = model.getNumberOfGuests();
 		this.full_recipe_view.show(menu, numOfGuest);
 	}
+
+	this.goToEditDinner = function(){
+		this.full_recipe_view.hide();
+		this.select_dish_view.show();
+		this.side_view.show();
+	}
 }
