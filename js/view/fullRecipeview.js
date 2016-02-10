@@ -13,13 +13,21 @@ var fullRecipe = function (container) {
 
 		var count = 0;
 	    var str = "";
+	    //var ingr = [];
 	        
 	    str += "<div class='col-md-12 col-sm-12 table pre-scrollable' id='andra' style='margin: 0px;'>";
 		for(var x in menu){
+
 			if(menu[x] == null || menu[x] == "undefined" || menu[x] == ""){
 					continue;
 				}
-			str += "<div class='row'><image class='col-md-2 col-sm-2 img-thumbnail' src='images/"+ menu[x].image +" style='height:180px;width: 180px;'></image><div class='col-md-4 col-sm-4'>" + menu[x].name + "<br>"+menu[x].ingredients.name+"</div><div class='col-md-6 col-sm-6'>" + menu[x].description + "</div></div>";
+			str += "<div class='row'><image class='col-md-2 col-sm-2 img-thumbnail' src='images/"+ menu[x].image +" style='height:180px;width: 180px;'></image><div class='col-md-4 col-sm-4'>" + menu[x].name + "<br><lu>"
+
+			for(var i in menu[x].ingredients){
+				str += "<li>" + menu[x].ingredients[i].name + "</li>";
+			}
+
+			str += "</lu></div><div class='col-md-6 col-sm-6'>" + menu[x].description + "</div></div>";
 		}
 		str += "</div>";
 		$("#fullRecipeMain").append(str);
