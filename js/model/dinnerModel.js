@@ -77,7 +77,7 @@ var DinnerModel = function() {
 	//Removes dish from menu
 	this.removeDishFromMenu = function(id) {
 		for(var dish in menu){
-			if(menu[dish].id === id){
+			if(menu[dish].id == id){
 				menu[dish] = "";
 			}
 		}

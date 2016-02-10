@@ -24,7 +24,7 @@ var sideView = function(container){
 	            
 	        }
 	        if(menu[d] !== 'undefined' && menu[d] !== "" && menu[d] !== null){
-	            $("#chart").append('<tr><td>' + menu[d].name + '</td><td>' + prices[count] + '</td></tr>');
+	            $("#chart").append('<tr><td>' + menu[d].name + '</td><td>' + prices[count] + '<span id="' + menu[d].id + '" class="glyphicon glyphicon-remove rm"><</tr>');
 	        }
 	        count +=1;
 	    }
@@ -40,7 +40,7 @@ var sideView = function(container){
 	    var count = 0;
 	    for(d in menu){
 	        if(menu[d] !== 'undefined' && menu[d] !== "" && menu[d] !== null){
-	            $("#chart").append('<tr><td>' + menu[d].name + '</td><td>' + prices[count] + '</td></tr>');
+	            $("#chart").append('<tr><td>' + menu[d].name + '</td><td>' + prices[count] + '<span id="' + menu[d].id + '" class="glyphicon glyphicon-remove rm"></td></tr>');
 	        }
 	        count++;
 	    }
