@@ -96,6 +96,7 @@ var mainController = function(model,startView, sideView, selectDishView, dishPre
 		console.log("fullRecipe");
 		this.last_overview.hide();
 		var menu = model.getFullMenu();
-		this.full_recipe_view.show(menu);
+		var numOfGuest = model.getNumberOfGuests();
+		this.full_recipe_view.show(menu, numOfGuest);
 	}
 }

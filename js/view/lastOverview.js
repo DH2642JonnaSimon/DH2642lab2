@@ -28,7 +28,7 @@ this.overviewMenu = function(finalMenu, totalPrice, numGuest){
 				if(finalMenu[x] == null || finalMenu[x] == "undefined" || finalMenu[x] == ""){
 					continue;
 				}
-			str += '<div class="col-xs-3 col-sm-3 col-md-3 " style="vertical-align: top;text-align: center;margin: 0 auto;"><div style="margin:0 auto;width: 180px;"><div id="' + finalMenu[x].id + '" class="clickableDish" style="background-color:grey;display: table;margin:0 auto;"><div style="overflow: hidden;width: 180px;"><image class="img-thumbnail " src="images/' + finalMenu[x].image + '" style="height:180px;width: 180px;"></image></div><h3 class="" style="">' + finalMenu[x].name + '</h3></div><p style="text-align: left;width: 180px;">' + finalMenu[x].description + '</p></div></div>';
+			str += '<div class="col-xs-3 col-sm-3 col-md-3 " style="vertical-align: top;text-align: center;margin: 0 auto;"><div style="margin:0 auto;width: 180px;"><div style="background-color:grey;display: table;margin:0 auto;"><div style="overflow: hidden;width: 180px;"><image class="img-thumbnail " src="images/' + finalMenu[x].image + '" style="height:180px;width: 180px;"></image></div><h3 class="" style="">' + finalMenu[x].name + '</h3></div><p style="text-align: left;width: 180px;">' + finalMenu[x].description + '</p></div></div>';
 		}
 
 		$("#lastOverview").append(str);
