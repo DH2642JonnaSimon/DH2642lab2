@@ -13,7 +13,7 @@ var fullRecipe = function (container) {
 	this.show = function(menu, numOfGuest){
 		$("#fullRecipeMain").show();
 		$("#fullRecipeMain").empty();
-		$("#fullRecipeMain").append('<div id="buttondiv2" class="col-xs-12 col-sm-12 col-md-12" style="vertical-align: top;text-align: center;margin: 0 auto;"><div id="mainContent" class="col-md-6"><h1 id="headerContent">My dinner: '+numOfGuest+' people</h1></div><button id="back3" type="button" class="btn btn-warning btn-responsive back" style="">Go back and edit dinner</button></div>');
+		$("#fullRecipeMain").append('<div id="buttondiv" class="col-xs-12 col-sm-12 col-md-12" style="vertical-align: top;text-align: center;margin: 0 auto;"><div id="buttondivBackground" style="background-color: rgba(246, 178, 107, 0.7);padding: 10px 10px 10px 10px;"><div id="mainContent" class="col-md-6"><h1 id="headerContent">My dinner: '+numOfGuest+' people</h1></div><button id="back3" type="button" class="btn btn-warning btn-responsive back" style="">Go back and edit dinner</button></div></div>');
 
 		var count = 0;
 	    var str = "";
@@ -21,11 +21,13 @@ var fullRecipe = function (container) {
 	    str += "<div class='col-md-12 col-sm-12 table pre-scrollable' id='andra' style='margin: 0px;'>";
 		for(var x in menu){
 
+			console.log(menu[x].image);
+
 			if(menu[x] == null || menu[x] == "undefined" || menu[x] == ""){
 					continue;
 				}
 			
-			str += "<div class='row'><image class='col-md-2 col-sm-2 img-thumbnail' src='images/"+ menu[x].image +" style='height:180px;width: 180px;'></image><div class='col-md-4 col-sm-4'>" + menu[x].name + "<br><lu>"
+			str += "<div class='row'><div class='col-md-3 col-sm-3'><image class='col-md-3 col-sm-3 img-thumbnail' src='images/"+ menu[x].image +"' style='height:180px;width: 180px;'></image></div><div class='col-md-3 col-sm-3'><h3>" + menu[x].name + "</h3><br><lu>"
 
 			for(var i in menu[x].ingredients){
 				str += "<li>" + menu[x].ingredients[i].name + "</li>";
