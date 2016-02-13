@@ -94,6 +94,7 @@ var DinnerModel = function() {
 	
 	this.getDishPrice = function(dish) {
 	    var price = 0.00;
+
 	    for(ingredient in dish.ingredients){
 			price += dish.ingredients[ingredient].price;
 		}

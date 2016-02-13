@@ -275,7 +275,7 @@ table#selectDishTable td{
   }
 
   #confirmDinner{
-		font-size: 10px;
+    font-size: 10px;
     text-size 8px;
     padding: 5px;
   }
@@ -388,7 +388,7 @@ table#selectDishTable td{
 
 
 @media screen and (min-height: 600px;){
-	#divButtonInWell{
+  #divButtonInWell{
     margin-top: 10%;
     position: relative; 
     bottom: 20px;

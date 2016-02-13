@@ -91,14 +91,12 @@ var mainController = function(model,startView, sideView, selectDishView, dishPre
 	}
 
 	this.lastDishBack = function(){
-		console.log("inne i main");
 		this.last_overview.hide();
 		this.side_view.show();
 		this.select_dish_view.show();
 	}
 
 	this.fullRecipeMain = function(){
-		console.log("fullRecipe");
 		this.last_overview.hide();
 		var menu = model.getFullMenu();
 		var numOfGuest = model.getNumberOfGuests();
@@ -109,5 +107,20 @@ var mainController = function(model,startView, sideView, selectDishView, dishPre
 		this.full_recipe_view.hide();
 		this.select_dish_view.show();
 		this.side_view.show();
+	}
+
+	this.confirmedDinner = function(){
+		this.lastDishInfo();
+        var finalmenu = model.getFullMenu();
+        var totalPrice = model.getTotalMenuPrice();
+        var numGuest = model.getNumberOfGuests();
+        var prices = [];
+        var i = 0;
+        for(x in finalmenu){
+        	prices[i] = model.getDishPrice(finalmenu[x]);
+        	i++;
+        }
+
+        this.last_overview.overviewMenu(finalmenu, totalPrice, numGuest, prices);
 	}
 }

@@ -62,4 +62,8 @@ var sideController = function(mc, model, sv){
         }
    });
 
+    $("#confirmDinner").click(function() {
+        mc.confirmedDinner();
+    });
+
 }
