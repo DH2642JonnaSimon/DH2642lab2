@@ -26,7 +26,7 @@ var sideView = function(container, model){
 	            
 	        }
 	        if(menu[d] !== 'undefined' && menu[d] !== "" && menu[d] !== null){
-	            $("#chart").append('<tr><td style="text-align: left;">' + menu[d].name + '</td><td style="text-align: right;">' + prices[count] + '<span id="' + menu[d].id + '" class="glyphicon glyphicon-remove rm"></tr>');
+	            $("#chart").append('<tr><td style="text-align: left;">' + menu[d].name + '</td><td style="text-align: right;">' + prices[count].toFixed(2) + '<span id="' + menu[d].id + '" class="glyphicon glyphicon-remove rm"></tr>');
 	        }
 	        count +=1;
 	    }
@@ -50,7 +50,6 @@ var sideView = function(container, model){
 	    }
 	    $("#chart").append('<tr><td id="dish" style="text-align: left;">Pending</td><td id="price" style="text-align: right;">0.00</td></tr>');
 	    $("#chart").append('<tr><td></td><td id="totalPrice">' + totalPrice.toFixed(2) + ' SEK</td></tr>');
-	    alert(totalPrice);
 	    if(totalPrice == 0){
 	    	$("#confirmDinner").attr("class", "btn btn-warning disabled btn-responsive");
 	    }else{

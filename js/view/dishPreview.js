@@ -38,7 +38,7 @@ var dishPreview = function(container){
 		    str += dish.ingredients[d].name + "</td><td style='border: 0px !important;'>";
 		    str += price.toFixed(2); + "</td><td style='border: 0px !important;'></tr>";
 		}
-		str += "<tr style='border-top: 1px solid #000;'><td style='text-align:right;border: 0px !important;' colspan='3'>"+ pendingPrice +"</td></tr>";
+		str += "<tr style='border-top: 1px solid #000;'><td style='text-align:right;border: 0px !important;' colspan='3'>"+ pendingPrice.toFixed(2) +"</td></tr>";
 		$("#ingredients").html(str);
 	}
 
