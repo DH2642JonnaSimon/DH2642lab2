@@ -1,11 +1,12 @@
 var selectDishView = function(container){
 	this.cnt = container;
-	this.cnt.append ('<div id="selectDishView" class="col-xs-7 col-sm-9 col-md-9" style="margin: 0px;height:100%;"><div id="selectDishBackground" style="background-color: rgba(246, 178, 107, 0.7);padding: 10px 10px 10px 10px;"><h3 style="border-bottom: solid 1px;">SELECT DISH</h3><table class="table-responsive table-condensed"><tr><td style="padding-right: 0px;"><input id="searchInput" class="form-control " type="text" style="padding: 0px;margin-right: 0px;"></td><td style="padding-left: 0px;"><button id="searchButton" type="button" class="btn btn-warning btn-responsive" style="">Search</button></td><td><select class="form-control" id="selectInput"><option value="starter">Starter</option><option value="main dish">Main</option><option value="dessert">Dessert</option></select></td></tr></table></div><div id ="viewDishes" style=""></div></div>');
-
+	this.cnt.append ('<div id="selectDishView" class="col-xs-7 col-sm-9 col-md-9"><div id="selectDishBackground"><h3 id="selectDishHeader">SELECT DISH</h3><table class="table-responsive table-condensed" id="selectDishTable"><tr><td id="searchInputCell"><input id="searchInput" placeholder="Enter key words" class="form-control " type="text"></td><td id="searchButtonCell"><button id="searchButton" type="button" class="btn btn-warning btn-responsive">Search</button></td><td id="selectCell"><select class="form-control" id="selectInput"><option value="starter">Starter</option><option value="main dish">Main</option><option value="dessert">Dessert</option></select></td></tr></table></div><div id ="viewDishes" class="pre-scrollable"></div></div>');
 	$("#selectDishView").hide();
 
 	this.show = function(){
 		$("#selectDishView").show();
+		$("#viewDishes").css("height", $("#selectDishView").height()-$("#selectDishBackground").height()-10);
+
 	}
 
 
@@ -15,6 +16,8 @@ var selectDishView = function(container){
 
 	this.selectDishes = function(dishes){
 		$("#viewDishes").empty();
+		$("#viewDishes").css("height", $("#selectDishView").height()-$("#selectDishBackground").height()-10);
+
 
 		var listId =[];
 		var listName =[];
@@ -24,13 +27,13 @@ var selectDishView = function(container){
 		var count = 0;
         var str = "";
         
-        str += "<div class='table pre-scrollable' id='andra' style='margin: 0px;'>";
+        str += "<div class='table' id='viewDishesInner'>";
 		for(var x in dish){
 			if(!isNaN(x)){
 			    if(count == 0){
-			        str += "<div class='row' style='margin-top:15px;'>";
+			        str += "<div class='row' id='rowViewDish'>";
 			    }
-				str += '<div class="col-xs-12 col-sm-12 col-md-3 " style="vertical-align: top;text-align: center;margin: 0 auto;"><div style="margin:0 auto;width: 180px;"><div id="' +dish[x].id + '" class="clickableDish" style="background-color:grey;display: table;margin:0 auto;height:280px;"><div style="overflow: hidden;width: 180px;"><image class="img-thumbnail " src="images/' + dish[x].image + '" style="height:180px;width: 180px;"></image></div><h3 class="" style="">' + dish[x].name + '</h3></div><p style="text-align: left;width: 180px;">' + dish[x].description + '</p></div></div>';
+				str += '<div class="col-xs-12 col-sm-12 col-md-3" id="dishDiv"><div id="innerDishDiv"><div id="' +dish[x].id + '" class="clickableDish" style="background-color:#fff;display: table;margin:0 auto;height:180px;"><div style="overflow: hidden;width: 180px;"><image class="img-thumbnail" id="imgElem" src="images/' + dish[x].image + '"></image></div></div><div id="dishHeaderDiv"><h3 id="dishHeader">' + dish[x].name + '</h3></div><p id="dishParagraph">' + dish[x].description + '</p></div></div>';
 				count++;
 				if(count == 4){
 				    str +="</div>";
@@ -41,7 +44,7 @@ var selectDishView = function(container){
 		
 		if(count != 0){
 		    for(var i = count; count != 4; count++){
-		        str += "<div style='20%'><div></div></div>";
+		        str += "<div><div></div></div>";
 		    }
 		    str += "</div>";
 		}
@@ -50,6 +53,13 @@ var selectDishView = function(container){
 		$("#viewDishes").append(str);
 		
 
-
 	}
+	
+	
+	$(document).ready(function() {
+	    $(window).resize(function(){
+			$("#viewDishes").css("height", $("#selectDishView").height()-$("#selectDishBackground").height() - 10);
+		});
+	});
+
 }

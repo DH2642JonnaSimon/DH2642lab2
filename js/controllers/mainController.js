@@ -12,17 +12,18 @@ var mainController = function(model,startView, sideView, selectDishView, dishPre
 		this.start_view.hide();
 		this.side_view.show();
 		this.select_dish_view.show();
-		$("#jumbotron").css("background-color", "rgba(0,0,0,0.7)");
+		$("#jumbotron").css("background-color", "#C0C0C0;");
 	}
 	
 	this.previewDish = function(dish){
 	   this.select_dish_view.hide();
-	   model.addDishToMenu(dish.id);
+	   model.setPendingDish(dish);
 	   var menu = model.getFullMenu();
 	   var totalPrice = model.getTotalMenuPrice();
-	   var pendingPrice = model.getDishPrice(dish);
 	   var count = 0;
 	   var prices = [];
+	   dish = model.getPendingDish();
+	   var pendingPrice = model.getDishPrice(model.getPendingDish());
 	   for(d in menu){
 	       var dishPrice = model.getDishPrice(menu[d]);
 	       prices[count] = dishPrice;
@@ -39,13 +40,17 @@ var mainController = function(model,startView, sideView, selectDishView, dishPre
 	
 	this.confirmDish = function(dishClick){
 	    this.dish_preview.hide();
+	    model.addDishToMenu(model.getPendingDish().id);
+	    model.setPendingDish("");
 	    var menu = model.getFullMenu();
 	    var count = 0;
 	    var prices = [];
 	    for(d in menu){
-	       var dishPrice = model.getDishPrice(menu[d]);
-	       prices[count] = dishPrice;
-	       count++;
+	    	var dishPrice = 0.00;
+	    	for(ingredient in menu[d].ingredients){
+	    		dishPrice += menu[d].ingredients[ingredient].price;
+	    	}
+	    	prices.push(dishPrice);
 	    }
 	    var totalPrice = model.getTotalMenuPrice();
 	    this.side_view.updateConfirmed(menu, prices, totalPrice);
@@ -54,7 +59,7 @@ var mainController = function(model,startView, sideView, selectDishView, dishPre
 	
 	this.denyDish = function(dishClicked){
 	    this.dish_preview.hide();
-	    model.removeDishFromMenu(dishClicked.id);
+	    model.setPendingDish("");
 	    var menu = model.getFullMenu();
 	    var count = 0;
 	    var prices = [];
@@ -73,8 +78,8 @@ var mainController = function(model,startView, sideView, selectDishView, dishPre
 	this.updatedNumberOfGuests = function(guests){
 	    var id = $(".confirm").attr("id");
 	    if(id != null || id!="" || id!="undefined"){
-	        var dish = model.getDish(id);
-	        var pendingPrice = model.getDishPrice(dish);
+	        var dish = model.getPendingDish();
+	        var pendingPrice = model.getDishPrice(model.getPendingDish());
 	        this.dish_preview.guestsUpdated(dish, guests, pendingPrice);
 	    }
 	}

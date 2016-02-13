@@ -8,6 +8,7 @@ var sideController = function(mc, model, sv){
 			var val = $("#guestsInput").val();
   			model.setNumberOfGuests(val);
   			var menu = model.getFullMenu();
+            var totalPrice = model.getTotalMenuPrice();
   			var count = 0;
 	        var prices = [];
     	    for(d in menu){
@@ -20,18 +21,16 @@ var sideController = function(mc, model, sv){
     	       count++;
     	    }
     	    
-    	    var pendingDish = $(".confirm").attr("id");
-    	    
-    	    pendingDishen = model.getDish(pendingDish);
-    	    var totalPrice = model.getTotalMenuPrice();
-    	    if(pendingDish == null || pendingDish == "undefined" || pendingDish == "" || pendingDish == "confirm" || pendingDish == "f"){
+    	    //var pendingDish = $(".confirm").attr("id");
+    	    pendingDishen = model.getPendingDish();
+
+    	    if(pendingDishen == null){
     	        sv.updateConfirmed(menu, prices, totalPrice);
     	    }else{
     	        var dishPrice = model.getDishPrice(pendingDishen);
     	        sv.updatePending(pendingDishen, dishPrice, menu, totalPrice, prices);
     	        mc.updatedNumberOfGuests(val);
     	    }
-  			$("#numberOfGuests").html(model.getNumberOfGuests());
 	});
 
     $(document).on('click', '.rm', function(event) {

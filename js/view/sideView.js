@@ -1,6 +1,9 @@
-var sideView = function(container){
+var sideView = function(container, model){
 	this.cnt = container;
-	this.cnt.append('<div id="sideView" class="col-xs-5 col-sm-3 col-md-3" style="text-align: center;border-right: 3px solid #000;"><br>Number of guests: <span id="numberOfGuests">1</span><br><h3>My Dinner</h3><p style="display: inline-block;margin-right: 10px;">People</p><input class="form-control" id="guestsInput" style="align-text: center;padding 0;width: 50%;display: inline-block;" type="number" name="Guests" value="1" min="1"><table class="table table-condensed"><thead><tr><th>Dish Name</th><th>Cost</th></tr></thead><tbody id="chart"><tr><td id="dish">Pending</td><td id="price">0.00</td></tr><tr><td></td><td id="totalPrice">SEK 0.00</td></tr></tbody></table><button id="confirmDinner" type="button" class="btn btn-warning btn-responsive">Confirm Dinner</button></div>');
+	this.cnt.append('<div id="sideView" class="col-xs-5 col-sm-3 col-md-3"><h3 style="margin-left: 10px;">My Dinner</h3><p id="peopleParagraph">People:</p><input class="form-control" id="guestsInput" value="" type="number" name="Guests" min="1"><table class="table table-condensed" id="sideViewTable" style="text-align: right;"><thead style="background-color: #C0C0C0;border-top: solid 3px black;border-bottom: solid 3px black;"><tr><th style="text-align: left;">Dish Name</th><th style="text-align: right;">Cost</th></tr></thead><tbody id="chart"><tr><td id="dish" style="text-align: left;">Pending</td><td id="price" style="text-align: right;">0.00</td></tr><tr><td></td><td id="totalPrice"></td></tr></tbody></table><div style="width:100%;text-align: center;"><button value="false" id="confirmDinner" type="button" class="btn btn-warning disabled btn-responsive">Confirm Dinner</button></div></div>');
+	
+	$("#guestsInput").val(model.getNumberOfGuests().toString());
+	$("#totalPrice").html("SEK " + model.getTotalMenuPrice().toFixed(2).toString());
 	$("#sideView").hide();
 
 	
@@ -16,7 +19,6 @@ var sideView = function(container){
 	this.updatePending = function(dish, pendingPrice, menu, totalPrice, prices){
 	    var count=0;
 	    $("#chart").empty();
-	    $("#chart").append('<tr><td id="dish">Pending</td><td id="price">0.00</td></tr>');
 	    for(d in menu){
 	        if(menu[d].type === dish.type){
 	            count +=1;
@@ -24,26 +26,35 @@ var sideView = function(container){
 	            
 	        }
 	        if(menu[d] !== 'undefined' && menu[d] !== "" && menu[d] !== null){
-	            $("#chart").append('<tr><td>' + menu[d].name + '</td><td>' + prices[count] + '<span id="' + menu[d].id + '" class="glyphicon glyphicon-remove rm"></tr>');
+	            $("#chart").append('<tr><td style="text-align: left;">' + menu[d].name + '</td><td style="text-align: right;">' + prices[count] + '<span id="' + menu[d].id + '" class="glyphicon glyphicon-remove rm"></tr>');
 	        }
 	        count +=1;
 	    }
-	    $("#chart").append('<tr><td></td><td id="totalPrice">SEK 0.00</td></tr>');
+	   	$("#chart").append('<tr><td id="dish" style="text-align: left;">Pending</td><td id="price" style="text-align: right;">0.00</td></tr>');
+	    $("#chart").append('<tr><td></td><td id="totalPrice"></td></tr>');
 	    $("#dish").html();
-	    $("#price").html(pendingPrice);
-	    $("#totalPrice").html(totalPrice);
+	    $("#price").html(pendingPrice.toFixed(2));
+	    $("#totalPrice").html("SEK " + totalPrice.toFixed(2));
+	    $("#confirmDinner").attr("class", "btn btn-warning disabled btn-responsive");
+	   	$("#confirmDinner").val("false");
 	}
 	
 	this.updateConfirmed = function(menu, prices, totalPrice){
 	    $("#chart").empty();
-	    $("#chart").append('<tr><td id="dish">Pending</td><td id="price">0.00</td></tr>');
 	    var count = 0;
 	    for(d in menu){
 	        if(menu[d] !== 'undefined' && menu[d] !== "" && menu[d] !== null){
-	            $("#chart").append('<tr><td>' + menu[d].name + '</td><td>' + prices[count] + '<span id="' + menu[d].id + '" class="glyphicon glyphicon-remove rm"></td></tr>');
+	            $("#chart").append('<tr><td style="text-align: left;">' + menu[d].name + '</td><td style="text-align: right;">' + prices[count].toFixed(2) + '<span id="' + menu[d].id + '" class="glyphicon glyphicon-remove rm"></td></tr>');
 	        }
 	        count++;
 	    }
-	    $("#chart").append('<tr><td></td><td id="totalPrice">' + totalPrice + ' SEK</td></tr>');
+	    $("#chart").append('<tr><td id="dish" style="text-align: left;">Pending</td><td id="price" style="text-align: right;">0.00</td></tr>');
+	    $("#chart").append('<tr><td></td><td id="totalPrice">' + totalPrice.toFixed(2) + ' SEK</td></tr>');
+	    alert(totalPrice);
+	    if(totalPrice == 0){
+	    	$("#confirmDinner").attr("class", "btn btn-warning disabled btn-responsive");
+	    }else{
+	    	$("#confirmDinner").attr("class", "btn btn-warning active btn-responsive");
+	    }
 	}
 }

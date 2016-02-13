@@ -6,7 +6,7 @@ var previewController = function(mc, model, pv){
 	$("#confirm").click(function() {
 	    var dishID = $(this).attr("id");
 	    $(".confirm").attr("id","f");
-        var dishClick = model.getDish(dishID);
+        var dishClick = model.getPendingDish();
 		mc.confirmDish(dishClick);
 	});
 	

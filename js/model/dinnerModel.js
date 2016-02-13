@@ -3,14 +3,50 @@ var DinnerModel = function() {
  
 	//TODO Lab 2 implement the data structure that will hold number of guest
 	// and selected dinner options for dinner menu
-	var numberOfGuests = 1;
-	var menu = {"starter": "", "main dish": "", "dessert": ""};
-
-	
+	this.numberOfGuests = 1.00;
+	this.menu = {"starter": "", "main dish": "", "dessert": ""};
+	this.pendingDish = "";
 
 
 	this.setNumberOfGuests = function(num) {
 		this.numberOfGuests = num;
+		for(d in this.menu){
+			if(this.menu[d] != ""){
+				var tempDish = this.getDish(this.menu[d].id);
+				for(i in tempDish.ingredients){
+					this.menu[d].ingredients[i].price = tempDish.ingredients[i].price * this.numberOfGuests;
+					this.menu[d].ingredients[i].quantity = tempDish.ingredients[i].quantity * this.numberOfGuests;
+				}
+			}	
+		}
+
+		if(this.pendingDish != ""){
+			var tempDish = this.getDish(this.pendingDish.id);
+			for(i in tempDish.ingredients){
+				this.pendingDish.ingredients[i].price = tempDish.ingredients[i].price * this.numberOfGuests;
+				this.pendingDish.ingredients[i].quantity = tempDish.ingredients[i].quantity * this.numberOfGuests;
+			}
+		}
+	}
+
+	this.setPendingDish = function(dish){
+		if(dish == ""){
+			this.pendingDish = "";
+			return;
+		}
+		var newObject = JSON.parse(JSON.stringify(dish));
+		this.pendingDish = dish;
+		if(this.pendingDish != null){
+			var tempDish = this.getDish(this.pendingDish.id);
+			for(i in tempDish.ingredients){
+				this.pendingDish.ingredients[i].price = tempDish.ingredients[i].price * this.numberOfGuests;
+				this.pendingDish.ingredients[i].quantity = tempDish.ingredients[i].quantity * this.numberOfGuests;
+			}
+		}
+	}
+
+	this.getPendingDish = function(dish){
+		return this.pendingDish;
 	}
 
 	// should return 
@@ -25,7 +61,7 @@ var DinnerModel = function() {
 
 	//Returns all the dishes on the menu.
 	this.getFullMenu = function() {
-		return menu;
+		return this.menu;
 	}
 	
 
@@ -42,21 +78,26 @@ var DinnerModel = function() {
 
 	//Returns the total price of the menu (all the ingredients multiplied by number of guests).
 	this.getTotalMenuPrice = function() {
-		var price = 0;
-		for(var dish in menu){
-			for(ingredient in menu[dish].ingredients){
-				price += menu[dish].ingredients[ingredient].price;
+		var price = 0.00;
+		if(this.pendingDish != "null" && this.pendingDish != null && this.pendingDish != "" && this.pendingDish != "undefined"){
+			price += this.getDishPrice(this.pendingDish);
+		}
+		for(dish in this.menu){
+			for(ingredient in this.menu[dish].ingredients){
+				if(this.pendingDish.type != this.menu[dish].type){
+					price += this.menu[dish].ingredients[ingredient].price;
+				}
 			}
 		}
-		return this.numberOfGuests*price;
+		return price;
 	}
 	
 	this.getDishPrice = function(dish) {
-	    var price = 0;
+	    var price = 0.00;
 	    for(ingredient in dish.ingredients){
 			price += dish.ingredients[ingredient].price;
 		}
-		return this.numberOfGuests*price;
+		return price;
 	}
 
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
@@ -70,15 +111,20 @@ var DinnerModel = function() {
 			}
 		}
 		if(addedDish){
-			menu[addedDish.type] = addedDish;	
+			var newObject = JSON.parse(JSON.stringify(addedDish));
+			for(i in newObject.ingredients){
+				newObject.ingredients[i].price *= this.numberOfGuests;
+				newObject.ingredients[i].quantity *= this.numberOfGuests;
+			}
+			this.menu[newObject.type] = newObject;	
 		}
 	}
 
 	//Removes dish from menu
 	this.removeDishFromMenu = function(id) {
-		for(var dish in menu){
-			if(menu[dish].id == id){
-				menu[dish] = "";
+		for(var dish in this.menu){
+			if(this.menu[dish].id == id){
+				this.menu[dish] = "";
 			}
 		}
 	}
@@ -109,9 +155,14 @@ var DinnerModel = function() {
 	this.getDish = function (id) {
 	  for(key in dishes){
 			if(dishes[key].id == id) {
-				return dishes[key];
+				var newObject = JSON.parse(JSON.stringify(dishes[key]));
+				return newObject;
 			}
 		}
+	}
+
+	this.calcMenu = function(dish){
+
 	}
 
 

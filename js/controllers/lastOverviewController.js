@@ -8,6 +8,7 @@ var lastOverviewController = function(mc, model, last_overview){
 
 	$("#confirmDinner").click(function() {
 		mc.lastDishInfo();
+
 		var finalmenu = model.getFullMenu();
 		var totalPrice = model.getTotalMenuPrice();
 		var numGuest = model.getNumberOfGuests();
