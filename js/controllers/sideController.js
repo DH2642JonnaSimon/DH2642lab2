@@ -24,7 +24,7 @@ var sideController = function(mc, model, sv){
     	    //var pendingDish = $(".confirm").attr("id");
     	    pendingDishen = model.getPendingDish();
 
-    	    if(pendingDishen == null){
+    	    if(pendingDishen == ""){
     	        sv.updateConfirmed(menu, prices, totalPrice);
     	    }else{
     	        var dishPrice = model.getDishPrice(pendingDishen);
