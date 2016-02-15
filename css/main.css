@@ -232,7 +232,69 @@ body
 
 }
 
+#headerContent {
+    padding: 10px 10px 10px 10px;
+}
 
+#overviewPic{
+  background-color: rgba(192,192,192,0.8);
+  display: table;
+  margin:0 
+  auto;
+  height:280px;
+  border-radius: 10px;
+}
 
+#verticalLine {
+      border-right: solid;
+      border-width: 1px;
+      color: white;
+    }
 
+#buttondiv{
+  background-color: rgba(246, 178, 107, 0.7);
+  padding: 10px 10px 10px 10px;
+  height: 100px;
+  margin-bottom: 10px
+}
 
+#TotPricePos {
+  position: absolute;
+  right: 0;
+  bottom: 25%;
+}
+
+p.oblique.big.red {
+    text-align: left;
+    font-weight: bold;
+    font-size: 20px;
+    color: rgba(139,0,0,0.8);    
+}
+
+p.oblique.small.white {
+    text-align: left;
+    font-size: 15px;
+    color: white;
+}
+
+button.button.back {
+    float: right;
+    position:relative;
+    padding: 10px;
+
+}
+
+#buttonDiv2 {
+  padding: 10px 10px 10px 10px;
+}
+
+#fullRecipeOver {
+  background-color: rgba(255, 255, 255, 0.3);
+  position: relative;
+  padding: 5px 5px 5px 5px;
+  margin: 5px 5px 5px 5px;
+  border-style: solid;
+  border-width: 1px;
+  border-color:white;
+  border-radius: 5px;
+}
