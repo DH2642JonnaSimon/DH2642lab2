@@ -5,7 +5,7 @@ $(function() {
 	
 	//And create the needed controllers and views
 	var start_view = new startView($("#viewHolder"));
-	var side_view = new sideView($("#viewHolder"));
+	var side_view = new sideView($("#viewHolder"), model);
 	var select_dish_view = new selectDishView($("#viewHolder"));
 	var dish_preview = new dishPreview($("#viewHolder"));
 	var last_overview = new lastOverview($("#viewHolder"));

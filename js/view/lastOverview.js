@@ -5,7 +5,7 @@ var lastOverview = function (container) {
   	// and/or ones that responed to interaction)
 
 	this.cnt = container;
-	this.cnt.append ('<div id="lastOverview" class="col-xs-12 col-sm-12 col-md-12" style="margin: 0px;height:100%;"></div>');
+	this.cnt.append('<div id="lastOverview" class="col-xs-12 col-sm-12 col-md-12" style="vertical-align: top;text-align: center;margin: 0 auto;"><div id="mainContent" class="col-md-6"><h1 id="headerContent">My dinner: people</h1></div><button id="back2" type="button" class="btn btn-warning btn-responsive back" style="">Go back and edit dinner</button></div>');
 	$("#lastOverview").hide();
 
 

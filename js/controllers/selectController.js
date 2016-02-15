@@ -5,14 +5,10 @@ var selectController = function(mc, model, sv){
 	
 
 	$("#selectInput").change(function() {
-		//alert("Heeeeeeej");
 		var choice = $("#selectInput").val();
         $("#searchInput").val("");
 		var a = model.getAllDishes(choice);
-		//alert(a[0].name);
 		sv.selectDishes(a);
-
-		
 	}).change();
 	
 	$("#searchButton").click(function(){

@@ -1,6 +1,7 @@
 var startController = function(mc){
 	this.mainController = mc;
-	$( "#newDinner" ).click(function() {
+	$( "#buttonInWell" ).click(function() {
+  		$("body").css("background-image", "none")
   		mc.newDinner();
 	});
 
