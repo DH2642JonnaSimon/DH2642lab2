@@ -249,13 +249,6 @@ table#selectDishTable td{
 /******************LASTOVERVIEW*****************************/
 #lastOverview{
   height: 100%;
-  margin: 0 px;
-}
-
-#overview{
-  vertical-align: top;
-  text-align: center;
-  margin: 0 auto;
 }
 
 #imgOverview{
@@ -430,26 +423,24 @@ table#selectDishTable td{
   margin:0 
   auto;
   height:280px;
-  border-radius: 10px;
+  border-style: solid;
+  border-width: 3px;
+  border-color:black;
 }
 
 #verticalLine {
       border-right: solid;
-      border-width: 1px;
-      color: white;
+      border-width: 3px;
+      color: black;
     }
 
 #buttondiv{
   background-color: rgba(246, 178, 107, 0.7);
+  border-style: solid;
+  border-width: 3px;
+  border-color:black;
   padding: 10px 10px 10px 10px;
-  height: 100px;
   margin-bottom: 10px
-}
-
-#TotPricePos {
-  position: absolute;
-  right: 0;
-  bottom: 25%;
 }
 
 p.oblique.big.red {
@@ -471,8 +462,9 @@ button.button.back {
     padding: 10px;
   }
 
-  #buttonDiv2 {
+#buttonDiv2 {
   padding: 10px 10px 10px 10px;
+  position: relative;
 }
 
 #fullRecipeOver {
@@ -484,4 +476,61 @@ button.button.back {
   border-width: 1px;
   border-color:white;
   border-radius: 5px;
+}
+
+hr {
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+}
+
+#mainRow {
+  display: flex;
+}
+
+#TotPriceDiv {
+  flex:1;
+}
+
+#TotPricePos {
+    position: absolute;
+    bottom: 0px;
+}
+
+#rootDivImage {
+  vertical-align: top;
+  text-align: center;
+  margin: 0 auto;
+}
+
+#closureDiv {
+  margin:0 auto;
+  width: 180px;
+}
+
+#imageDiv {
+  overflow: hidden;
+  width: 180px;
+  border-style: solid;
+  border-width: 2px;
+  border-color:black;
+}
+
+
+@media screen and (max-width: 992px){
+  #back2{
+    position: relative;
+    float: left;
+  }
+
+  #back3{
+    position: relative;
+    float: left;
+  }
+
+#mainContent{
+  flex: 1;
+  position: relative;
+  padding-bottom: 5px;
+}
 }

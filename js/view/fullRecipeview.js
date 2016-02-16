@@ -13,7 +13,8 @@ var fullRecipe = function (container) {
 	this.show = function(menu, numOfGuest){
 		$("#fullRecipeMain").show();
 		$("#fullRecipeMain").empty();
-		$("#fullRecipeMain").append('<div id="buttondiv" class="col-xs-12 col-sm-12 col-md-12"><div id="mainContent" class="col-xs-8 col-sm-8 col-md-8"><h2 id="headerContent">My dinner: '+numOfGuest+' people</h2></div><div class="col-xs-4 col-sm-4 col-md-4"><button id="back3" type="button" class="button back btn btn-warning btn-responsive back">Go back and edit dinner</button></div></div></div>');
+		$("#fullRecipeMain").append('<div class="row" id="headRow"><div id="buttondiv" class="col-xs-12 col-sm-12 col-md-12"><div id="mainContent" class="col-xs-12 col-sm-8 col-md-8"><h1 id="headerContent">My dinner: '+numOfGuest+' people</h1></div><div class="col-xs-12 col-sm-4 col-md-4"><button id="back3" type="button" class="button back btn btn-warning btn-responsive">Go back and edit dinner</button></div></div></div>');
+		$("#andra").css("height", $("#fullRecipeMain").height()-$("#headRow").height()-250);
 
 		var count = 0;
 	    var str = "";
@@ -38,5 +39,10 @@ var fullRecipe = function (container) {
 		str += "</div>";
 		$("#fullRecipeMain").append(str);
 	}
+$(document).ready(function() {
+	    $(window).resize(function(){
+			$("#andra").css("height", $("#fullRecipeMain").height()-$("#headRow").height()-250);
+		});
+});
 }
 
