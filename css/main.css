@@ -534,3 +534,14 @@ hr {
   padding-bottom: 5px;
 }
 }
+
+@media screen and (max-width: 792px){
+  #dishPreviewRow{
+    display: block;
+  }
+  .back{
+    display: block;
+    position: relative;
+    margin-top: 5px;
+  }
+}

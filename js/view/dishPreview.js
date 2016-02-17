@@ -1,6 +1,6 @@
 var dishPreview = function(container){
 	this.cnt = container;
-	this.cnt.append ('<div id="dishPreview" class="col-xs-7 col-sm-9 col-md-9 pre-scrollable"><div class="row" id="dishPreviewRow"><div id="mainContent" class="col-md-6"><h1 id="headerContent"></h1><div id="imgeDiv"></div><button id="back" type="button" class="btn btn-warning btn-responsive back">back to Select Dish</button></div><div id="ingredientsContent" class="col-md-6"><div class="table-responsive"><table class="table borderless" id="ingredients"></table></div><button id="confirm" type="button" class="btn btn-warning btn-responsive confirm">Confirm Dish</button></div></div><div id="Preparations"><br><h2 id="headerPrep">Preparations</h2><p id="instructions"></p></div></div>');
+	this.cnt.append ('<div id="dishPreview" class="col-xs-7 col-sm-9 col-md-9 pre-scrollable"><div class="row" id="dishPreviewRow"><div id="mainContent" class="col-xs-12 col-sm-12 col-md-6"><h1 id="headerContent"></h1><div id="imgeDiv"></div><button id="back" type="button" class="btn btn-warning btn-responsive back">back to Select Dish</button></div><div id="ingredientsContent" class="col-xs-12 col-sm-12 col-md-6"><div class="table-responsive"><table class="table borderless" id="ingredients"></table></div><button id="confirm" type="button" class="btn btn-warning btn-responsive confirm">Confirm Dish</button></div></div><div id="Preparations"><br><h2 id="headerPrep">Preparations</h2><p id="instructions"></p></div></div>');
 
 	$("#dishPreview").hide();
 
