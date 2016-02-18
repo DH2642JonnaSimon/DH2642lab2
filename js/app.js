@@ -1,5 +1,5 @@
 $(function() {
-	//We instantiate our model
+	//We instantiate our model //branch l3
 	var model = new DinnerModel();
 
 	
