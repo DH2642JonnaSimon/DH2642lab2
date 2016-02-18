@@ -9,6 +9,7 @@ var lastOverview = function (container) {
 	$("#lastOverview").hide();
 
 
+
 	this.hide = function(){
 		$("#lastOverview").hide();
 }

@@ -7,6 +7,12 @@ var DinnerModel = function() {
 	this.menu = {"starter": "", "main dish": "", "dessert": ""};
 	this.pendingDish = "";
 
+	//För att kunna uppdatera viewn när nåt i modellen ändras behövs observer patterns.
+	//Först addera observer-metoder till modellen:
+	//this.addObserver = function(observer) {} - Array where to add new observers
+	//var notifyObservers = function(obj) {} - that will call the update method on all the observers in the array
+	//Metoderna nedan skall tillkalla notifyObserver-motoden när något ändras.
+	//notifyObserver-metoden kan innehålla inget argument eller vilket objekt som helst!
 
 	this.setNumberOfGuests = function(num) {
 		this.numberOfGuests = num;
