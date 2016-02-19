@@ -18,76 +18,22 @@ var mainController = function(model,startView, sideView, selectDishView, dishPre
 	this.previewDish = function(dish){
 	   this.select_dish_view.hide();
 	   model.setPendingDish(dish);
-	   var menu = model.getFullMenu();
-	   var totalPrice = model.getTotalMenuPrice();
-	   var count = 0;
-	   var prices = [];
-	   dish = model.getPendingDish();
-	   var pendingPrice = model.getDishPrice(model.getPendingDish());
-	   for(d in menu){
-	       var dishPrice = model.getDishPrice(menu[d]);
-	       prices[count] = dishPrice;
-	       count++;
-	   }
-	   var guests = model.getNumberOfGuests();
-	   
-	   if(guests == "" || guests == null || guests =="undefiend"){
-	       guests = 1;
-	   }
-	   this.side_view.updatePending(dish, pendingPrice, menu, totalPrice, prices);
-	   this.dish_preview.showDish(dish, guests, pendingPrice);
+	   this.dish_preview.showDish();
 	}
 	
-	this.confirmDish = function(dishClick){
+	this.confirmDish = function(){
 	    this.dish_preview.hide();
-	    model.addDishToMenu(model.getPendingDish().id);
-	    model.setPendingDish("");
-	    var menu = model.getFullMenu();
-	    var count = 0;
-	    var prices = [];
-	    for(d in menu){
-	    	var dishPrice = 0.00;
-	    	for(ingredient in menu[d].ingredients){
-	    		dishPrice += menu[d].ingredients[ingredient].price;
-	    	}
-	    	prices.push(dishPrice);
-	    }
-	    var totalPrice = model.getTotalMenuPrice();
-	    this.side_view.updateConfirmed(menu, prices, totalPrice);
+	    var penDish = model.getPendingDish().id;
+	   	model.setPendingDish("");
+	    model.addDishToMenu(penDish);
 	    this.select_dish_view.show();
 	}
 	
-	this.denyDish = function(dishClicked){
+	this.denyDish = function(){
 	    this.dish_preview.hide();
 	    model.setPendingDish("");
-	    var menu = model.getFullMenu();
-	    var count = 0;
-	    var prices = [];
-	    for(d in menu){
-	       if(menu[d] != null && menu[d] != "" && menu[d] != '' && menu[d] != "undefined"){
-	        var dishPrice = model.getDishPrice(menu[d]);
-	        prices[count] = dishPrice;
-	       }
-	       count++;
-	    }
-	    var totalPrice = model.getTotalMenuPrice();
-	    this.side_view.updateConfirmed(menu, prices, totalPrice);
+	    this.side_view.updateFunction();
 	    this.select_dish_view.show();
-	}
-	
-	this.updatedNumberOfGuests = function(guests){
-	    var id = $(".confirm").attr("id");
-	    if(id != null || id!="" || id!="undefined"){
-	        var dish = model.getPendingDish();
-	        var pendingPrice = model.getDishPrice(model.getPendingDish());
-	        this.dish_preview.guestsUpdated(dish, guests, pendingPrice);
-	    }
-	}
-
-	this.lastDishInfo = function(){
-		this.side_view.hide();
-		this.select_dish_view.hide();
-		this.last_overview.show();
 	}
 
 	this.lastDishBack = function(){
@@ -98,9 +44,7 @@ var mainController = function(model,startView, sideView, selectDishView, dishPre
 
 	this.fullRecipeMain = function(){
 		this.last_overview.hide();
-		var menu = model.getFullMenu();
-		var numOfGuest = model.getNumberOfGuests();
-		this.full_recipe_view.show(menu, numOfGuest);
+		this.full_recipe_view.show();
 	}
 
 	this.goToEditDinner = function(){
@@ -110,17 +54,8 @@ var mainController = function(model,startView, sideView, selectDishView, dishPre
 	}
 
 	this.confirmedDinner = function(){
-		this.lastDishInfo();
-        var finalmenu = model.getFullMenu();
-        var totalPrice = model.getTotalMenuPrice();
-        var numGuest = model.getNumberOfGuests();
-        var prices = [];
-        var i = 0;
-        for(x in finalmenu){
-        	prices[i] = model.getDishPrice(finalmenu[x]);
-        	i++;
-        }
-
-        this.last_overview.overviewMenu(finalmenu, totalPrice, numGuest, prices);
+		this.select_dish_view.hide();
+		this.side_view.hide();
+		this.last_overview.show();
 	}
 }

@@ -6,6 +6,7 @@ var DinnerModel = function() {
 	this.numberOfGuests = 1.00;
 	this.menu = {"starter": "", "main dish": "", "dessert": ""};
 	this.pendingDish = "";
+	this.observers = [];
 
 	//För att kunna uppdatera viewn när nåt i modellen ändras behövs observer patterns.
 	//Först addera observer-metoder till modellen:
@@ -13,6 +14,17 @@ var DinnerModel = function() {
 	//var notifyObservers = function(obj) {} - that will call the update method on all the observers in the array
 	//Metoderna nedan skall tillkalla notifyObserver-motoden när något ändras.
 	//notifyObserver-metoden kan innehålla inget argument eller vilket objekt som helst!
+
+	this.addObserver = function(observer) {
+		this.observers.push(observer);
+	}
+
+	this.notifyObservers = function(obj) {
+		for(var i = 0; i < this.observers.length; i++){
+			this.observers[i].updateFunction();
+		}
+	}
+
 
 	this.setNumberOfGuests = function(num) {
 		this.numberOfGuests = num;
@@ -23,7 +35,8 @@ var DinnerModel = function() {
 					this.menu[d].ingredients[i].price = tempDish.ingredients[i].price * this.numberOfGuests;
 					this.menu[d].ingredients[i].quantity = tempDish.ingredients[i].quantity * this.numberOfGuests;
 				}
-			}	
+			}
+
 		}
 
 		if(this.pendingDish != ""){
@@ -33,6 +46,7 @@ var DinnerModel = function() {
 				this.pendingDish.ingredients[i].quantity = tempDish.ingredients[i].quantity * this.numberOfGuests;
 			}
 		}
+		this.notifyObservers();	
 	}
 
 	this.setPendingDish = function(dish){
@@ -49,9 +63,10 @@ var DinnerModel = function() {
 				this.pendingDish.ingredients[i].quantity = tempDish.ingredients[i].quantity * this.numberOfGuests;
 			}
 		}
+		this.notifyObservers();
 	}
 
-	this.getPendingDish = function(dish){
+	this.getPendingDish = function(){
 		return this.pendingDish;
 	}
 
@@ -125,6 +140,7 @@ var DinnerModel = function() {
 			}
 			this.menu[newObject.type] = newObject;	
 		}
+		this.notifyObservers();
 	}
 
 	//Removes dish from menu
@@ -134,6 +150,7 @@ var DinnerModel = function() {
 				this.menu[dish] = "";
 			}
 		}
+		this.notifyObservers();
 	}
 
 	//function that returns all dishes of specific type (i.e. "starter", "main dish" or "dessert")

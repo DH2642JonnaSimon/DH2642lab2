@@ -1,20 +1,12 @@
-var previewController = function(mc, model, pv){
+var previewController = function(mc){
 	this.mainController = mc;
-	this.dm = model;
-	this.previewDish = pv;
 
 	$("#confirm").click(function() {
-	    var dishID = $(this).attr("id");
-	    $(".confirm").attr("id","f");
-        var dishClick = model.getPendingDish();
-		mc.confirmDish(dishClick);
+		mc.confirmDish();
 	});
 	
 	$("#back").click(function() {
-	    var dishID = $(this).attr("id");
-	    $(".confirm").attr("id","f");
-        var dishClicked = model.getDish(dishID);
-	    mc.denyDish(dishClicked);
+	    mc.denyDish();
 	});
 
 
