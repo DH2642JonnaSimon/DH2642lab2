@@ -7,15 +7,15 @@ var selectController = function(mc, model, sv){
 	$("#selectInput").change(function() {
 		var choice = $("#selectInput").val();
         $("#searchInput").val("");
-		var a = model.getAllDishes(choice);
-		sv.selectDishes(a);
+       	var dishes = model.getAllDishes(choice);
+		//sv.updateFunction(dishes);
 	}).change();
 	
 	$("#searchButton").click(function(){
 	    var choice = $("#selectInput").val();
 	    var input = $("#searchInput").val();
-	    var a = model.getAllDishes(choice, input);
-	    sv.selectDishes(a);
+	    var dishes = model.getAllDishes(choice, input);
+	    //sv.updateFunction(dishes);
 	});
 
    $(document).on('click', '.clickableDish', function(event) { 

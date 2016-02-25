@@ -1,6 +1,7 @@
-var selectDishView = function(container){
+var selectDishView = function(container, model){
 	this.cnt = container;
-	this.cnt.append ('<div id="selectDishView" class="col-xs-7 col-sm-9 col-md-9"><div id="selectDishBackground"><h3 id="selectDishHeader">SELECT DISH</h3><table class="table-responsive table-condensed" id="selectDishTable"><tr><td id="searchInputCell"><input id="searchInput" placeholder="Enter key words" class="form-control " type="text"></td><td id="searchButtonCell"><button id="searchButton" type="button" class="btn btn-warning btn-responsive">Search</button></td><td id="selectCell"><select class="form-control" id="selectInput"><option value="starter">Starter</option><option value="main dish">Main</option><option value="dessert">Dessert</option></select></td></tr></table></div><div id ="viewDishes" class="pre-scrollable"></div></div>');
+	this.cnt.append ('<div id="selectDishView" class="col-xs-7 col-sm-9 col-md-9"><div id="selectDishBackground"><h3 id="selectDishHeader">SELECT DISH</h3><table class="table-responsive table-condensed" id="selectDishTable"><tr><td id="searchInputCell"><input id="searchInput" placeholder="Enter key words" class="form-control " type="text"></td><td id="searchButtonCell"><button id="searchButton" type="button" class="btn btn-warning btn-responsive">Search</button></td><td id="selectCell"><select class="form-control" id="selectInput"><option value="appetizer">Starter</option><option value="main%20dish">Main</option><option value="dessert">Dessert</option></select></td></tr></table></div><div id ="viewDishes" class="pre-scrollable"></div></div>');
+	model.addObserver(this);
 	$("#selectDishView").hide();
 
 	this.show = function(){
@@ -14,7 +15,7 @@ var selectDishView = function(container){
 		$("#selectDishView").hide();
 	}
 
-	this.selectDishes = function(dishes){
+	this.updateFunction = function(dishes){
 		$("#viewDishes").empty();
 		$("#viewDishes").css("height", $("#selectDishView").height()-$("#selectDishBackground").height()-10);
 
@@ -23,8 +24,8 @@ var selectDishView = function(container){
 		var listName =[];
 		var listDescription =[];
 		var listImage =[];
-		var dish = dishes;
 		var count = 0;
+		var dish = dishes;
         var str = "";
         
         str += "<div class='table' id='viewDishesInner'>";
