@@ -4,7 +4,7 @@ var DinnerModel = function() {
 	//TODO Lab 2 implement the data structure that will hold number of guest
 	// and selected dinner options for dinner menu
 	this.numberOfGuests = 1.00;
-	this.menu = {"starter": "", "main dish": "", "dessert": ""};
+	this.menu = {"Appetizer": "", "Main dish": "", "Dessert": ""};
 	this.pendingDish = "";
 	this.observers = [];
 
@@ -28,25 +28,8 @@ var DinnerModel = function() {
 
 	this.setNumberOfGuests = function(num) {
 		this.numberOfGuests = num;
-		for(d in this.menu){
-			if(this.menu[d] != ""){
-				var tempDish = this.getDish(this.menu[d].id);
-				for(i in tempDish.ingredients){
-					this.menu[d].ingredients[i].price = tempDish.ingredients[i].price * this.numberOfGuests;
-					this.menu[d].ingredients[i].quantity = tempDish.ingredients[i].quantity * this.numberOfGuests;
-				}
-			}
 
-		}
-
-		if(this.pendingDish != ""){
-			var tempDish = this.getDish(this.pendingDish.id);
-			for(i in tempDish.ingredients){
-				this.pendingDish.ingredients[i].price = tempDish.ingredients[i].price * this.numberOfGuests;
-				this.pendingDish.ingredients[i].quantity = tempDish.ingredients[i].quantity * this.numberOfGuests;
-			}
-		}
-		this.notifyObservers();	
+		this.notifyObservers(this.pendingDish);	
 	}
 
 	this.setPendingDish = function(dish){
@@ -54,15 +37,8 @@ var DinnerModel = function() {
 			this.pendingDish = "";
 			return;
 		}
-		var newObject = JSON.parse(JSON.stringify(dish));
+		console.log(dish);
 		this.pendingDish = dish;
-		if(this.pendingDish != null){
-			var tempDish = this.getDish(this.pendingDish.id);
-			for(i in tempDish.ingredients){
-				this.pendingDish.ingredients[i].price = tempDish.ingredients[i].price * this.numberOfGuests;
-				this.pendingDish.ingredients[i].quantity = tempDish.ingredients[i].quantity * this.numberOfGuests;
-			}
-		}
 		this.notifyObservers();
 	}
 
@@ -124,21 +100,10 @@ var DinnerModel = function() {
 
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
-	this.addDishToMenu = function(id) {
-		var addedDish;
-		for(var dish in dishes){
-			if(dishes[dish].id === id){
-				addedDish = dishes[dish];
-				break;
-			}
-		}
+	this.addDishToMenu = function(dish) {
+		var addedDish = dish;
 		if(addedDish){
-			var newObject = JSON.parse(JSON.stringify(addedDish));
-			for(i in newObject.ingredients){
-				newObject.ingredients[i].price *= this.numberOfGuests;
-				newObject.ingredients[i].quantity *= this.numberOfGuests;
-			}
-			this.menu[newObject.type] = newObject;	
+			this.menu[addedDish.Category] = addedDish;	
 		}
 		this.notifyObservers();
 	}
@@ -189,7 +154,7 @@ var DinnerModel = function() {
 	         success: function (data) {
 	            console.log(data);
 	            this.setPendingDish(data);
-				this.notifyObservers(data.Results);
+				this.notifyObservers(data);
 	            }
          });
 	}

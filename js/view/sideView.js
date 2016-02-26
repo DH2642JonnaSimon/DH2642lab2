@@ -17,7 +17,7 @@ var sideView = function(container, model){
 	}
 
 
-	this.updateFunction = function(){
+	this.updateFunction = function(data){
 
 		var dish = model.getPendingDish();
 		var menu = model.getFullMenu();
@@ -27,7 +27,13 @@ var sideView = function(container, model){
 	   	dish = model.getPendingDish();
 	   	var pendingPrice = model.getDishPrice(model.getPendingDish());
 	   	for(d in menu){
-	       	var dishPrice = model.getDishPrice(menu[d]);
+	   		var amountOfIng = 0;
+	   		for(a in menu[d].Ingredients) {
+	   			console.log("afdsfsdfdfsdfds");
+	   			amountOfIng += 1;
+	   		}
+	       	var dishPrice = amountOfIng * model.getNumberOfGuests();
+	       	console.log(dishPrice);
 	       	prices[count] = dishPrice;
 	       	count++;
 	   	}
@@ -36,14 +42,15 @@ var sideView = function(container, model){
 	   	if(dish != null && dish != "" && dish != undefined){
 		    var count=0;
 		    $("#chart").empty();
+
 		    for(d in menu){
-		        if(menu[d].type === dish.type){
+		        if(menu[d].Category === dish.Category){
 		            count +=1;
 		            continue;
 		            
 		        }
 		        if(menu[d] !== 'undefined' && menu[d] !== "" && menu[d] !== null){
-		            $("#chart").append('<tr><td style="text-align: left;">' + menu[d].name + '</td><td style="text-align: right;">' + prices[count].toFixed(2) + '<span id="' + menu[d].id + '" class="glyphicon glyphicon-remove rm"></tr>');
+		            $("#chart").append('<tr><td style="text-align: left;">' + menu[d].Title + '</td><td style="text-align: right;">' + prices[count].toFixed(2) + '<span id="' + menu[d].RecipeID + '" class="glyphicon glyphicon-remove rm"></tr>');
 		        }
 		        count +=1;
 		    }
@@ -60,7 +67,7 @@ var sideView = function(container, model){
 		    var count = 0;
 		    for(d in menu){
 		        if(menu[d] !== 'undefined' && menu[d] !== "" && menu[d] !== null){
-		            $("#chart").append('<tr><td style="text-align: left;">' + menu[d].name + '</td><td style="text-align: right;">' + prices[count].toFixed(2) + '<span id="' + menu[d].id + '" class="glyphicon glyphicon-remove rm"></td></tr>');
+		            $("#chart").append('<tr><td style="text-align: left;">' + menu[d].Title + '</td><td style="text-align: right;">' + prices[count].toFixed(2) + '<span id="' + menu[d].id + '" class="glyphicon glyphicon-remove rm"></td></tr>');
 		        }
 		        count++;
 		    }

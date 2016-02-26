@@ -6,29 +6,37 @@ var dishPreview = function(container, model){
 
 
 	this.updateFunction = function(data) {
+		if(data =="undefined" || data== null || data==""){
+			return;
+		}
 		var guests = model.getNumberOfGuests();
-		var dish = model.getPendingDish();
-	   	var pendingPrice = model.getDishPrice(dish);
-		$(".confirm").attr("id", dish.id);
-		$(".back").attr("id", dish.id);
+		var dish = data;
+
+	   	//var pendingPrice = model.getDishPrice(dish);
+	   	console.log(dish.RecipeID);
+		$(".confirm").attr("id", dish.RecipeID);
+		$(".back").attr("id", dish.RecipeID);
 		$("#headerContent").html(dish.Title);
-		var source = "images/" + dish.image;
-		$("#imgeDiv").html('<image class="img-thumbnail " id="imagee" src="'+ source + '" style=""></image>');
-		$("#instructions").html(dish.description);
+		var source = dish.ImageURL;
+		$("#imgeDiv").html('<image class="img-thumbnail " id="imagee" src="'+ source + '" style=""></image><p>'+dish.Description+'</p>');
+		$("#instructions").html(dish.Instructions);
 		var str = "";
-		str += "<h3 style='width: 100%;'>Ingredients for " + guests  + "People</h3><tbody style='border-top: 1px solid #000;'>";
+		str += "<h3 style='width: 100%;'>Ingredients for " + guests  + " People</h3><tbody style='border-top: 1px solid #000;'>";
 		
-		for(d in dish.ingredients){
-		    var quantity = dish.ingredients[d].quantity;
-		    var price = dish.ingredients[d].price;
-		    str += "<tr><td style='border: 0px !important;'>" + quantity.toFixed(2) + " " + dish.ingredients[d].unit + "</td><td style='border: 0px !important;'>";
-		    str += dish.ingredients[d].name + "</td><td style='border: 0px !important;'>";
+		for(d in dish.Ingredients){
+		    var quantity = dish.Ingredients[d].Quantity;
+		    var price = 1 * model.getNumberOfGuests();
+		    str += "<tr><td style='border: 0px !important;'>" + quantity.toFixed(2) + " " + dish.Ingredients[d].Unit + "</td><td style='border: 0px !important;'>";
+		    str += dish.Ingredients[d].Name + "</td><td style='border: 0px !important;'>";
 		    str += price.toFixed(2) + "</td><td style='border: 0px !important;'></tr>";
 		}
-		str += "<tr style='border-top: 1px solid #000;'><td style='text-align:right;border: 0px !important;' colspan='4'>"+ pendingPrice.toFixed(2) +"</td></tr>";
+		str += "<tr style='border-top: 1px solid #000;'><td style='text-align:right;border: 0px !important;' colspan='4'></td></tr>";
 		$("#ingredients").html(str);
 	}
 
+	this.show = function(){
+		$("#dishPreview").show();
+	}
 
 	this.hide = function(){
 		$("#dishPreview").hide();

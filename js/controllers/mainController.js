@@ -17,15 +17,19 @@ var mainController = function(model,startView, sideView, selectDishView, dishPre
 	
 	this.previewDish = function(){
 	   this.select_dish_view.hide();
+	   this.dish_preview.show();
 	   this.dish_preview.updateFunction();
+	   this.side_view.updateFunction();
 	}
 	
 	this.confirmDish = function(){
 	    this.dish_preview.hide();
-	    var penDish = model.getPendingDish().id;
-	   	model.setPendingDish("");
+	    var penDish = model.getPendingDish();
+	   	console.log(penDish);
 	    model.addDishToMenu(penDish);
+	   	model.setPendingDish("");
 	    this.select_dish_view.show();
+	    model.getAllDishes($("#selectInput").val());
 	}
 	
 	this.denyDish = function(){
