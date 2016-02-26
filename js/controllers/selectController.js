@@ -20,7 +20,7 @@ var selectController = function(mc, model, sv){
 
    $(document).on('click', '.clickableDish', function(event) { 
        var dishID = $(this).attr("id");
-       var dish = model.getDish(dishID);
-       mc.previewDish(dish);
+       mc.previewDish();
+       model.getDish(dishID);
    });
 }

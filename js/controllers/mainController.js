@@ -15,10 +15,9 @@ var mainController = function(model,startView, sideView, selectDishView, dishPre
 		$("#jumbotron").css("background-color", "#C0C0C0;");
 	}
 	
-	this.previewDish = function(dish){
+	this.previewDish = function(){
 	   this.select_dish_view.hide();
-	   model.setPendingDish(dish);
-	   this.dish_preview.showDish();
+	   this.dish_preview.updateFunction();
 	}
 	
 	this.confirmDish = function(){

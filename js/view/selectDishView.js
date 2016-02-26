@@ -15,7 +15,7 @@ var selectDishView = function(container, model){
 		$("#selectDishView").hide();
 	}
 
-	this.updateFunction = function(dishes){
+	this.updateFunction = function(data){
 		$("#viewDishes").empty();
 		$("#viewDishes").css("height", $("#selectDishView").height()-$("#selectDishBackground").height()-10);
 
@@ -25,16 +25,17 @@ var selectDishView = function(container, model){
 		var listDescription =[];
 		var listImage =[];
 		var count = 0;
-		var dish = dishes;
         var str = "";
-        
+        //var dish = JSON.parse(data);
+        console.log(data);
+        var dish = data;
         str += "<div class='table' id='viewDishesInner'>";
 		for(var x in dish){
 			if(!isNaN(x)){
 			    if(count == 0){
 			        str += "<div class='row' id='rowViewDish'>";
 			    }
-				str += '<div class="col-xs-12 col-sm-12 col-md-3" id="dishDiv"><div id="innerDishDiv"><div id="' +dish[x].id + '" class="clickableDish" style="background-color:#fff;display: table;margin:0 auto;height:180px;"><div style="overflow: hidden;width: 180px;"><image class="img-thumbnail" id="imgElem" src="images/' + dish[x].image + '"></image></div></div><div id="dishHeaderDiv"><h3 id="dishHeader">' + dish[x].name + '</h3></div><p id="dishParagraph">' + dish[x].description + '</p></div></div>';
+				str += '<div class="col-xs-12 col-sm-12 col-md-3" id="dishDiv"><div id="innerDishDiv"><div id="' +dish[x].RecipeID + '" class="clickableDish" style="background-color:#fff;display: table;margin:0 auto;height:180px;"><div style="overflow: hidden;width: 180px;"><image class="img-thumbnail" id="imgElem" src="'+ dish[x].ImageURL + '"></image></div></div><div id="dishHeaderDiv"><h3 id="dishHeader">' + dish[x].Title + '</h3></div><p id="dishParagraph">' + dish[x].StarRating + '</p></div></div>';
 				count++;
 				if(count == 4){
 				    str +="</div>";

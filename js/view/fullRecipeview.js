@@ -29,7 +29,7 @@ var fullRecipe = function (container, model) {
 	    str += "<div class='col-md-12 col-sm-12 table pre-scrollable' id='andra' style='margin: 0px;padding-bottom: 250px;'>";
 		for(var x in menu){
 
-			console.log(menu[x].image);
+			//console.log(menu[x].image);
 
 			if(menu[x] == null || menu[x] == "undefined" || menu[x] == ""){
 					continue;

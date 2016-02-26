@@ -36,7 +36,7 @@ this.updateFunction = function(){
 	    var str = '<div id="mainRow" class="row table pre-scrollable"><div class="col-xs-9 col-sm-9 col-md-9" id="verticalLine"><div class="row">';
         
 		for(var x in finalMenu){
-			console.log(finalMenu[x]);
+			//console.log(finalMenu[x]);
 
 			if(finalMenu[x] == null || finalMenu[x] == "undefined" || finalMenu[x] == ""){
 				count++;
