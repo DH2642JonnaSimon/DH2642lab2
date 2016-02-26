@@ -54,11 +54,16 @@ var sideView = function(container, model){
 		        }
 		        count +=1;
 		    }
+		    amountOfIng = 0;
+		    for(a in dish.Ingredients) {
+	   			amountOfIng += 1;
+	   		}
 		   	$("#chart").append('<tr><td id="dish" style="text-align: left;">Pending</td><td id="price" style="text-align: right;">0.00</td></tr>');
 		    $("#chart").append('<tr><td></td><td id="totalPrice"></td></tr>');
 		    $("#dish").html();
-		    $("#price").html(pendingPrice.toFixed(2));
-		    $("#totalPrice").html("SEK " + totalPrice.toFixed(2));
+		    var pris = amountOfIng * guests;
+		    $("#price").html(pris.toFixed(2));
+		    $("#totalPrice").html();
 		    $("#confirmDinner").attr("class", "btn btn-warning disabled btn-responsive");
 		   	$("#confirmDinner").val("false");
 
@@ -67,13 +72,13 @@ var sideView = function(container, model){
 		    var count = 0;
 		    for(d in menu){
 		        if(menu[d] !== 'undefined' && menu[d] !== "" && menu[d] !== null){
-		            $("#chart").append('<tr><td style="text-align: left;">' + menu[d].Title + '</td><td style="text-align: right;">' + prices[count].toFixed(2) + '<span id="' + menu[d].id + '" class="glyphicon glyphicon-remove rm"></td></tr>');
+		            $("#chart").append('<tr><td style="text-align: left;">' + menu[d].Title + '</td><td style="text-align: right;">' + prices[count].toFixed(2) + '<span id="' + menu[d].RecipeID + '" class="glyphicon glyphicon-remove rm"></td></tr>');
 		        }
 		        count++;
 		    }
 		    $("#chart").append('<tr><td id="dish" style="text-align: left;">Pending</td><td id="price" style="text-align: right;">0.00</td></tr>');
 		    $("#chart").append('<tr><td></td><td id="totalPrice">' + totalPrice.toFixed(2) + ' SEK</td></tr>');
-		    if(totalPrice == 0){
+		    if(menu.length > 0){
 		    	$("#confirmDinner").attr("class", "btn btn-warning disabled btn-responsive");
 		    }else{
 		    	$("#confirmDinner").attr("class", "btn btn-warning active btn-responsive");

@@ -7,6 +7,8 @@ var DinnerModel = function() {
 	this.menu = {"Appetizer": "", "Main dish": "", "Dessert": ""};
 	this.pendingDish = "";
 	this.observers = [];
+	this.pg = 0;
+	this.rpp = 10;
 
 	//För att kunna uppdatera viewn när nåt i modellen ändras behövs observer patterns.
 	//Först addera observer-metoder till modellen:
@@ -111,7 +113,7 @@ var DinnerModel = function() {
 	//Removes dish from menu
 	this.removeDishFromMenu = function(id) {
 		for(var dish in this.menu){
-			if(this.menu[dish].id == id){
+			if(this.menu[dish].RecipeID == id){
 				this.menu[dish] = "";
 			}
 		}
@@ -124,10 +126,11 @@ var DinnerModel = function() {
 	this.getAllDishes = function (type,filter) {
 		var apiKey = "18f3cT02U9f6yRl3OKDpP8NA537kxYKu";
 		if(filter == "" || filter == null || filter == "undefined"){
-			var url = "http://api.bigoven.com/recipes?api_key=18f3cT02U9f6yRl3OKDpP8NA537kxYKu&pg=1&rpp=10&include_primarycat=" + type;
+			var url = "http://api.bigoven.com/recipes?api_key=18f3cT02U9f6yRl3OKDpP8NA537kxYKu&pg=" + this.pg + "&rpp=" + this.rpp + "&include_primarycat=" + type;
 		}else{
-			var url = "http://api.bigoven.com/recipes?api_key=18f3cT02U9f6yRl3OKDpP8NA537kxYKu&pg=1&rpp=10&any_kw=" + filter + "&include_primarycat=" + type;
+			var url = "http://api.bigoven.com/recipes?api_key=18f3cT02U9f6yRl3OKDpP8NA537kxYKu&pg=" + this.pg + "&rpp=" + this.rpp + "&any_kw=" + filter + "&include_primarycat=" + type;
 		}
+		console.log(url);
 		$.ajax({
 	         type: "GET",
 	         dataType: 'json',
@@ -139,6 +142,11 @@ var DinnerModel = function() {
 				this.notifyObservers(data.Results);
 	            }
          });
+	}
+
+	this.nextPage = function(){
+		this.pg = this.pg + 8;
+		this.rpp = this.rpp + 8;
 	}
 
 	//function that returns a dish of specific ID

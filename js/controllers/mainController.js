@@ -29,6 +29,7 @@ var mainController = function(model,startView, sideView, selectDishView, dishPre
 	    model.addDishToMenu(penDish);
 	   	model.setPendingDish("");
 	    this.select_dish_view.show();
+	    $("#viewDishes").empty();
 	    model.getAllDishes($("#selectInput").val());
 	}
 	

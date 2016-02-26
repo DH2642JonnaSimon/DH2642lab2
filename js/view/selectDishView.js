@@ -19,7 +19,6 @@ var selectDishView = function(container, model){
 		if(data =="undefined" || data== null || data==""){
 			return;
 		}
-		$("#viewDishes").empty();
 		$("#viewDishes").css("height", $("#selectDishView").height()-$("#selectDishBackground").height()-10);
 
 
