@@ -28,8 +28,6 @@ var selectDishView = function(container, model){
 		var listImage =[];
 		var count = 0;
         var str = "";
-        //var dish = JSON.parse(data);
-        console.log(data);
         var dish = data;
         str += "<div class='table' id='viewDishesInner'>";
 		for(var x in dish){

@@ -35,13 +35,13 @@ var fullRecipe = function (container, model) {
 					continue;
 				}
 			
-			str += "<div class='row'><div id='fullRecipeOver' class='col-xs-12 col-sm-12 col-md-12'><div class='col-md-3 col-sm-3'><image class='col-md-3 col-sm-3 img-thumbnail' src='images/"+ menu[x].image +"' style='height:180px;width: 180px;'></image></div><div class='col-md-3 col-sm-3'><h3>" + menu[x].name + "</h3><br><lu>"
+			str += "<div class='row'><div id='fullRecipeOver' class='col-xs-12 col-sm-12 col-md-12'><div class='col-md-3 col-sm-3'><image class='col-md-3 col-sm-3 img-thumbnail' src='"+ menu[x].ImageURL +"' style='height:180px;width: 180px;'></image></div><div class='col-md-3 col-sm-3'><h3>" + menu[x].Title + "</h3><br><lu>"
 
-			for(var i in menu[x].ingredients){
-				str += "<li>" + menu[x].ingredients[i].name + "</li>";
+			for(var i in menu[x].Ingredients){
+				str += "<li>" + menu[x].Ingredients[i].Name + "</li>";
 			}
 
-			str += "</lu></div><div class='col-md-6 col-sm-6'>" + menu[x].description + "</div></div></div>";
+			str += "</lu></div><div class='col-md-6 col-sm-6'>" + menu[x].Description + "</div></div></div>";
 		}
 		str += "</div>";
 		$("#fullRecipeMain").append(str);

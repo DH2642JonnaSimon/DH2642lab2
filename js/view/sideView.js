@@ -29,11 +29,9 @@ var sideView = function(container, model){
 	   	for(d in menu){
 	   		var amountOfIng = 0;
 	   		for(a in menu[d].Ingredients) {
-	   			console.log("afdsfsdfdfsdfds");
 	   			amountOfIng += 1;
 	   		}
 	       	var dishPrice = amountOfIng * model.getNumberOfGuests();
-	       	console.log(dishPrice);
 	       	prices[count] = dishPrice;
 	       	count++;
 	   	}
@@ -63,7 +61,7 @@ var sideView = function(container, model){
 		    $("#dish").html();
 		    var pris = amountOfIng * guests;
 		    $("#price").html(pris.toFixed(2));
-		    $("#totalPrice").html();
+		    $("#totalPrice").html(totalPrice.toFixed(2) + " SEK");
 		    $("#confirmDinner").attr("class", "btn btn-warning disabled btn-responsive");
 		   	$("#confirmDinner").val("false");
 

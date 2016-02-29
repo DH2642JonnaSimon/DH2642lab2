@@ -25,10 +25,6 @@ this.updateFunction = function(){
         var numGuest = model.getNumberOfGuests();
         var prices = [];
         var i = 0;
-        for(x in finalMenu){
-        	prices[i] = model.getDishPrice(finalMenu[x]);
-        	i++;
-        }
 
 		$("#lastOverview").empty();
 		$("#lastOverview").append('<div class="row" id="headRow"><div id="buttondiv" class="col-xs-12 col-sm-12 col-md-12"><div id="mainContent" class="col-xs-12 col-sm-8 col-md-8"><h1 id="headerContent">My dinner: '+numGuest+' people</h1></div><div class="col-xs-12 col-sm-4 col-md-4"><button id="back2" type="button" class="button back btn btn-warning btn-responsive">Go back and edit dinner</button></div></div></div>');
@@ -36,14 +32,12 @@ this.updateFunction = function(){
 	    var str = '<div id="mainRow" class="row table pre-scrollable"><div class="col-xs-9 col-sm-9 col-md-9" id="verticalLine"><div class="row">';
         
 		for(var x in finalMenu){
-			//console.log(finalMenu[x]);
-
 			if(finalMenu[x] == null || finalMenu[x] == "undefined" || finalMenu[x] == ""){
 				count++;
 				continue;
 			}
 
-			str += '<div id="rootDivImage" class="col-xs-12 col-sm-12 col-md-4"><div id="closureDiv"><div id="overviewPic"><div id="imageDiv"><image class="img-thumbnail " src="images/' + finalMenu[x].image + '" style="height:180px;width: 180px;"></image></div><h3>' + finalMenu[x].name + '</h3></div><p class="oblique small white"> Price:' + prices[count] + '</p></div></div>';
+			str += '<div id="rootDivImage" class="col-xs-12 col-sm-12 col-md-4"><div id="closureDiv"><div id="overviewPic"><div id="imageDiv"><image class="img-thumbnail " src="' + finalMenu[x].ImageURL + '" style="height:180px;width: 180px;"></image></div><h3>' + finalMenu[x].Title + '</h3></div><p class="oblique small white"> Price:' + prices[count] + '</p></div></div>';
 			count++;
 		}
 	

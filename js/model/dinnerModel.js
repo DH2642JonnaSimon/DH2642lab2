@@ -7,8 +7,8 @@ var DinnerModel = function() {
 	this.menu = {"Appetizer": "", "Main dish": "", "Dessert": ""};
 	this.pendingDish = "";
 	this.observers = [];
-	this.pg = 0;
-	this.rpp = 10;
+	this.pg = 1;
+	this.rpp = 8;
 
 	//För att kunna uppdatera viewn när nåt i modellen ändras behövs observer patterns.
 	//Först addera observer-metoder till modellen:
@@ -77,18 +77,61 @@ var DinnerModel = function() {
 
 	//Returns the total price of the menu (all the ingredients multiplied by number of guests).
 	this.getTotalMenuPrice = function() {
-		var price = 0.00;
-		if(this.pendingDish != "null" && this.pendingDish != null && this.pendingDish != "" && this.pendingDish != "undefined"){
-			price += this.getDishPrice(this.pendingDish);
-		}
-		for(dish in this.menu){
-			for(ingredient in this.menu[dish].ingredients){
-				if(this.pendingDish.type != this.menu[dish].type){
-					price += this.menu[dish].ingredients[ingredient].price;
-				}
+		var totalPrice = 0;
+		var prices = [];
+		var amountOfIng = 0;
+		if (this.pendingDish == ""){
+			for(d in this.menu){
+				amountOfIng = 0;
+		   		for(a in this.menu[d].Ingredients) {
+		   			amountOfIng += 1;
+		   		}
+		       	var dishPrice = amountOfIng * this.numberOfGuests;
+		       	prices.push(dishPrice);
+		   	}
+
+			for (var i = 0; i < prices.length; i++) {
+	    		totalPrice += prices[i] << 0;
 			}
+		}else{
+			for(a in this.pendingDish.Ingredients) {
+		   		amountOfIng += 1;
+		   	}
+		   	pendingPrice = amountOfIng * this.numberOfGuests;
+		   	var status = false;
+
+			for(d in this.menu){
+				amountOfIng = 0;
+		   		if(this.pendingDish.Category == this.menu[d].Category){
+		   			status = true;
+		   			for(a in this.pendingDish.Ingredients) {
+		   				console.log("tja2");
+		   				amountOfIng += 1;
+		   			}
+		   		}else{
+		   			for(a in this.menu[d].Ingredients) {
+		   				console.log("tja1");
+		   				amountOfIng += 1;
+		   			}
+
+		   		}
+		       	var dishPrice = amountOfIng * this.numberOfGuests;
+		       	prices.push(dishPrice);
+		       	console.log(dishPrice);
+		   	}
+
+			for (var i = 0; i < prices.length; i++) {
+	    		totalPrice += prices[i] << 0;
+			}
+			console.log("total price: innan " + totalPrice);
+			if(status != true){
+				console.log("tja");
+		   		totalPrice += pendingPrice;	
+		   	}
+		   	console.log("total price: efter " + totalPrice);
 		}
-		return price;
+		return totalPrice;
+
 	}
 	
 	this.getDishPrice = function(dish) {
@@ -120,6 +163,11 @@ var DinnerModel = function() {
 		this.notifyObservers();
 	}
 
+	this.resetPage = function(){
+		this.pg = 1;
+		this.rpp = 8;
+	}
+
 	//function that returns all dishes of specific type (i.e. "starter", "main dish" or "dessert")
 	//you can use the filter argument to filter out the dish by name or ingredient (use for search)
 	//if you don't pass any filter all the dishes will be returned
@@ -130,7 +178,6 @@ var DinnerModel = function() {
 		}else{
 			var url = "http://api.bigoven.com/recipes?api_key=18f3cT02U9f6yRl3OKDpP8NA537kxYKu&pg=" + this.pg + "&rpp=" + this.rpp + "&any_kw=" + filter + "&include_primarycat=" + type;
 		}
-		console.log(url);
 		$.ajax({
 	         type: "GET",
 	         dataType: 'json',
@@ -145,8 +192,7 @@ var DinnerModel = function() {
 	}
 
 	this.nextPage = function(){
-		this.pg = this.pg + 8;
-		this.rpp = this.rpp + 8;
+		this.pg = this.pg + 1;
 	}
 
 	//function that returns a dish of specific ID

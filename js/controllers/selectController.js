@@ -8,7 +8,7 @@ var selectController = function(mc, model, sv){
 		var choice = $("#selectInput").val();
         $("#searchInput").val("");
         $("#viewDishes").empty();
-        //model.resetPage();
+        model.resetPage();
        	var dishes = model.getAllDishes(choice);
 	}).change();
 	
@@ -16,7 +16,7 @@ var selectController = function(mc, model, sv){
 	    var choice = $("#selectInput").val();
 	    var input = $("#searchInput").val();
 	   	$("#viewDishes").empty();
-	   	//model.resetPage();
+	   	model.resetPage();
 	    var dishes = model.getAllDishes(choice, input);
 	});
 
@@ -29,11 +29,9 @@ var selectController = function(mc, model, sv){
 jQuery(function($) {
     $('#viewDishes').on('scroll', function() {
         if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
-            model.nextPage();
-   			model.getAllDishes();
+          model.nextPage();
+   			  model.getAllDishes();
         }
     })
 });
-   /*model.nextPage();
-   model.getAllDishes();*/
 }

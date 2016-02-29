@@ -11,9 +11,6 @@ var dishPreview = function(container, model){
 		}
 		var guests = model.getNumberOfGuests();
 		var dish = data;
-
-	   	//var pendingPrice = model.getDishPrice(dish);
-	   	console.log(dish.RecipeID);
 		$(".confirm").attr("id", dish.RecipeID);
 		$(".back").attr("id", dish.RecipeID);
 		$("#headerContent").html(dish.Title);
