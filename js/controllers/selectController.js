@@ -8,7 +8,8 @@ var selectController = function(mc, model, sv){
 		var choice = $("#selectInput").val();
         $("#searchInput").val("");
         $("#viewDishes").empty();
-        //model.resetPage();
+        model.resetPage();
+       	console.log(model.rpp);
        	var dishes = model.getAllDishes(choice);
 	}).change();
 	
@@ -16,7 +17,8 @@ var selectController = function(mc, model, sv){
 	    var choice = $("#selectInput").val();
 	    var input = $("#searchInput").val();
 	   	$("#viewDishes").empty();
-	   	//model.resetPage();
+	   	console.log(model.rpp);
+	   	model.resetPage();
 	    var dishes = model.getAllDishes(choice, input);
 	});
 

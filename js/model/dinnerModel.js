@@ -7,8 +7,8 @@ var DinnerModel = function() {
 	this.menu = {"Appetizer": "", "Main dish": "", "Dessert": ""};
 	this.pendingDish = "";
 	this.observers = [];
-	this.pg = 0;
-	this.rpp = 10;
+	this.pg = 1;
+	this.rpp = 8;
 
 	//För att kunna uppdatera viewn när nåt i modellen ändras behövs observer patterns.
 	//Först addera observer-metoder till modellen:
@@ -149,6 +149,11 @@ var DinnerModel = function() {
 		this.rpp = this.rpp + 8;
 	}
 
+	this.resetPage = function(){
+		this.pg = 1;
+		this.rpp = 8;
+	}
+
 	//function that returns a dish of specific ID
 	this.getDish = function (id) {
 		console.log(id);
@@ -167,9 +172,7 @@ var DinnerModel = function() {
          });
 	}
 
-	this.calcMenu = function(dish){
 
-	}
 
 
 	// the dishes variable contains an array of all the 
