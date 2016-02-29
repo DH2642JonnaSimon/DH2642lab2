@@ -195,11 +195,6 @@ var DinnerModel = function() {
 		this.pg = this.pg + 1;
 	}
 
-	this.resetPage = function(){
-		this.pg = 1;
-		this.rpp = 8;
-	}
-
 	//function that returns a dish of specific ID
 	this.getDish = function (id) {
 		console.log(id);
