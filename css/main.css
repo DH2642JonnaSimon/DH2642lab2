@@ -96,6 +96,24 @@ table#sideViewTable td{
   margin: 0 auto;
 }
 
+.rm{
+    color: rgba(150, 0, 0, 0.5);
+}
+
+.rm:hover{
+  color: rgb(150,0,0);
+  cursor: pointer;
+}
+
+.rm:active{
+  color: rgb(150,0,0);
+  cursor: pointer;
+}
+
+.rm:focus{
+  color: rgb(150,0,0);
+  cursor: pointer;
+}
 
 /**********************SELECTDISHVIEW****************/
 #selectDishView{
