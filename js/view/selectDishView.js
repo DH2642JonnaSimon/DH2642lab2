@@ -36,6 +36,9 @@ var selectDishView = function(container, model){
 			        str += "<div class='row' id='rowViewDish'>";
 			    }
 				str += '<div class="col-xs-12 col-sm-12 col-md-3" id="dishDiv"><div id="innerDishDiv"><div id="' +dish[x].RecipeID + '" class="clickableDish" style="background-color:#fff;display: table;margin:0 auto;height:180px;"><div style="overflow: hidden;width: 180px;"><image class="img-thumbnail" id="imgElem" src="'+ dish[x].ImageURL + '"></image></div></div><div id="dishHeaderDiv"><h3 id="dishHeader">' + dish[x].Title + '</h3></div><p id="dishParagraph">' + dish[x].StarRating + '</p></div></div>';
+/*				if (dish[x].StarRating >=4){
+					$("#dishParagraph").append('<image id="" src="/images/grp-gripimage-1a6dac.png"></image>');
+				}*/
 				count++;
 				if(count == 4){
 				    str +="</div>";
