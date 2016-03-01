@@ -178,7 +178,6 @@ table#selectDishTable td{
 }
 
 #dishHeaderDiv{
-  height: 75px;
   background-color:#C0C0C0; 
   display:flex;
   flex-direction: column;
@@ -189,6 +188,9 @@ table#selectDishTable td{
 
 #dishHeader{
   margin: 0px;
+  font-size: 18px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 #dishParagraph{

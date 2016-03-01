@@ -6,6 +6,15 @@ var selectDishView = function(container, model){
 
 	this.show = function(){
 		$("#selectDishView").show();
+		var height = 0;
+		$('.dishHeadDiv').each(function() {
+			if(height < $(this).height()){
+				height = $(this).height();
+			}
+		});
+		$('.dishHeadDiv').css('height', height);
+		console.log(height);
+	
 		$("#viewDishes").css("height", $("#selectDishView").height()-$("#selectDishBackground").height()-10);
 
 	}
@@ -35,7 +44,7 @@ var selectDishView = function(container, model){
 			    if(count == 0){
 			        str += "<div class='row' id='rowViewDish'>";
 			    }
-				str += '<div class="col-xs-12 col-sm-12 col-md-3" id="dishDiv"><div id="innerDishDiv"><div id="' +dish[x].RecipeID + '" class="clickableDish" style="background-color:#fff;display: table;margin:0 auto;height:180px;"><div style="overflow: hidden;width: 180px;"><image class="img-thumbnail" id="imgElem" src="'+ dish[x].ImageURL + '"></image></div></div><div id="dishHeaderDiv"><h3 id="dishHeader">' + dish[x].Title + '</h3></div><p id="dishParagraph">' + dish[x].StarRating + '</p></div></div>';
+				str += '<div class="col-xs-12 col-sm-12 col-md-3" id="dishDiv"><div id="innerDishDiv"><div id="' +dish[x].RecipeID + '" class="clickableDish" style="background-color:#fff;display: table;margin:0 auto;height:180px;"><div style="overflow: hidden;width: 180px;"><image class="img-thumbnail" id="imgElem" src="'+ dish[x].ImageURL + '"></image></div></div><div id="dishHeaderDiv" class="dishHeadDiv"><h3 id="dishHeader">' + dish[x].Title + '</h3></div><p id="dishParagraph">' + dish[x].StarRating + '</p></div></div>';
 				count++;
 				if(count == 4){
 				    str +="</div>";
@@ -53,10 +62,19 @@ var selectDishView = function(container, model){
 		
 		str += "</table></div>";
 		$("#viewDishes").append(str);
-		
 
+		var height = 0;
+		$('.dishHeadDiv').each(function() {
+			if(height < $(this).height()){
+				height = $(this).height();
+			}
+		});
+		if(height != 0){
+			$('.dishHeadDiv').css('height', height);
+		}
 	}
-	
+
+
 	
 	$(document).ready(function() {
 	    $(window).resize(function(){
