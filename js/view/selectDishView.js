@@ -49,6 +49,7 @@ var selectDishView = function(container, model){
 			    if(count == 0){
 			        str += "<div class='row' id='rowViewDish'>";
 			    }
+			    console.log(dish[x].ImageURL);
 				str += '<div class="col-xs-12 col-sm-12 col-md-3" id="dishDiv"><div id="innerDishDiv"><div id="' +dish[x].RecipeID + '" class="clickableDish" style="background-color:#fff;display: table;margin:0 auto;height:180px;"><div style="overflow: hidden;width: 180px;"><image class="img-thumbnail" id="imgElem" src="'+ dish[x].ImageURL + '"></image></div></div><div id="dishHeaderDiv" class="dishHeadDiv"><h3 id="dishHeader">' + dish[x].Title + '</h3></div><p id="dishParagraph">' + dish[x].StarRating + '</p></div></div>';
 				count++;
 				if(count == 4){
