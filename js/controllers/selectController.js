@@ -26,6 +26,7 @@ var selectController = function(mc, model, sv){
        model.getDish(dishID);
    });
 
+ $(document).ready(function(){  
 jQuery(function($) {
     $('#viewDishes').on('scroll', function() {
         if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
@@ -33,5 +34,6 @@ jQuery(function($) {
    			  model.getAllDishes();
         }
     })
+});
 });
 }
