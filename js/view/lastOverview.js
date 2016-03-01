@@ -46,7 +46,7 @@ this.updateFunction = function(){
 				continue;
 			}
 
-			str += '<div id="rootDivImage" class="col-xs-12 col-sm-12 col-md-4"><div id="closureDiv"><div id="overviewPic"><div id="imageDiv"><image class="img-thumbnail " src="' + finalMenu[x].ImageURL + '" style="height:180px;width: 180px;"></image></div><h3>' + finalMenu[x].Title + '</h3></div><p class="oblique small white"> Price:' + prices[count] + '</p></div></div>';
+			str += '<div id="rootDivImage" class="col-xs-12 col-sm-12 col-md-4"><div id="closureDiv"><div id="overviewPic"><div id="imageDiv"><image class="img-thumbnail " src="' + finalMenu[x].ImageURL + '" style="height:180px;width: 180px;"></image></div><div class="dishHeadDiv"> <h3 class="">' + finalMenu[x].Title + '</h3></div></div><p class="oblique small white"> Price:' + prices[count] + '</p></div></div>';
 			count++;
 		}
 	
