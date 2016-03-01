@@ -15,10 +15,12 @@ var mainController = function(model,startView, sideView, selectDishView, dishPre
 		$("#jumbotron").css("background-color", "#C0C0C0;");
 	}
 	
-	this.previewDish = function(){
+	this.previewDish = function(dishID){
 	   this.select_dish_view.hide();
+	   this.dish_preview.loadingPage();
 	   this.dish_preview.show();
-	   this.dish_preview.updateFunction();
+	   model.getDish(dishID);
+	   //this.dish_preview.updateFunction();
 	   this.side_view.updateFunction();
 	}
 	
@@ -28,7 +30,8 @@ var mainController = function(model,startView, sideView, selectDishView, dishPre
 	   	console.log(penDish);
 	    model.addDishToMenu(penDish);
 	   	model.setPendingDish("");
-	    this.select_dish_view.show();
+	   	var confirm = "confirm";
+	    this.select_dish_view.show(confirm);
 	   	this.side_view.updateFunction();
 	    //$("#viewDishes").empty();
 	    //model.getAllDishes($("#selectInput").val());
@@ -62,5 +65,14 @@ var mainController = function(model,startView, sideView, selectDishView, dishPre
 		this.select_dish_view.hide();
 		this.side_view.hide();
 		this.last_overview.show();
+	}
+
+	this.loadingDishes = function(choice, input) {
+		this.select_dish_view.loadingPage();
+		model.getAllDishes(choice, input);
+	}
+
+	this.loadingDish = function(dishID) {
+			
 	}
 }

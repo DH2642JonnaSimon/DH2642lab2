@@ -4,7 +4,11 @@ var selectDishView = function(container, model){
 	model.addObserver(this);
 	$("#selectDishView").hide();
 
-	this.show = function(){
+	this.show = function(confirm){
+		alert(confirm);
+		if(confirm == "confirm"){
+			$("#loadImage").hide();
+		}
 		$("#selectDishView").show();
 		var height = 0;
 		$('.dishHeadDiv').each(function() {
@@ -29,12 +33,19 @@ var selectDishView = function(container, model){
 		$("#selectDishView").hide();
 	}
 
+	this.loadingPage = function() {
+		$("#viewDishes").append("<div id='loadImage' style='display: table;text-align: center;'><div style='display:table-cell;vertical-align: middle;'><image src='images/loading.gif'></image></div></div>");
+
+	}
+
 	this.updateFunction = function(data){
-		if(data =="undefined" || data== null || data==""){
+		$("#loadImage").remove();
+		if(data =="undefined" || data== null || data=="" || data=="error"){
+			//alert("hej");
+			$("#viewDishes").html("<div id='loadImage' style='display: table;text-align: center;background-color: red;'><div style='display:table-cell;vertical-align: middle;'><p>ERROR</p></div></div>");		
 			return;
-		}
+		} 
 		$("#viewDishes").css("height", $("#selectDishView").height()-$("#selectDishBackground").height()-10);
-		console.log(data);
 
 		var listId =[];
 		var listName =[];

@@ -4,9 +4,16 @@ var dishPreview = function(container, model){
 	model.addObserver(this);
 	$("#dishPreview").hide();
 
+	this.loadingPage = function() {
+		$("#dishPreview").append("<div id='loadImage' style='display: table;text-align: center;'><div style='display:table-cell;vertical-align: middle;'><image src='images/loading.gif'></image></div></div>");
+	}
 
 	this.updateFunction = function(data) {
-		if(data =="undefined" || data== null || data==""){
+		$("#loadImage").remove();
+		if(data =="undefined" || data== null || data=="" || data=="error"){
+			if($("#viewDishes").html() == ""){
+				$("#viewDishes").html("<p>Couldn't connect to the server, please reload the page. :)</p>");
+			}	
 			return;
 		}
 		var guests = model.getNumberOfGuests();
@@ -27,7 +34,9 @@ var dishPreview = function(container, model){
 		    str += dish.Ingredients[d].Name + "</td><td style='border: 0px !important;'>";
 		    str += price.toFixed(2) + "</td><td style='border: 0px !important;'></tr>";
 		}
-		str += "<tr style='border-top: 1px solid #000;'><td style='text-align:right;border: 0px !important;' colspan='4'>"+ model.getTotalMenuPrice() +".00 SEK</td></tr>";
+
+				var TotalPrice = model.getTotalMenuPrice()
+		str += "<tr style='border-top: 1px solid #000;'><td style='text-align:right;border: 0px !important;' colspan='4'>"+ TotalPrice.toFixed(2) +" SEK</td></tr>";
 		$("#ingredients").html(str);
 	}
 

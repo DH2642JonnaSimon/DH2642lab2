@@ -172,11 +172,11 @@ var DinnerModel = function() {
 	//you can use the filter argument to filter out the dish by name or ingredient (use for search)
 	//if you don't pass any filter all the dishes will be returned
 	this.getAllDishes = function (type,filter) {
-		var apiKey = "H9n1zb6es492fj87OxDtZM9s5sb29rW3";
+		var apiKey = "1hg3g4Dkwr6pSt22n00EfS01rz568IR6";
 		if(filter == "" || filter == null || filter == "undefined"){
-			var url = "http://api.bigoven.com/recipes?api_key=H9n1zb6es492fj87OxDtZM9s5sb29rW3&pg=" + this.pg + "&rpp=" + this.rpp + "&include_primarycat=" + type;
+			var url = "http://api.bigoven.com/recipes?api_key=1hg3g4Dkwr6pSt22n00EfS01rz568IR6&pg=" + this.pg + "&rpp=" + this.rpp + "&include_primarycat=" + type;
 		}else{
-			var url = "http://api.bigoven.com/recipes?api_key=H9n1zb6es492fj87OxDtZM9s5sb29rW3&pg=" + this.pg + "&rpp=" + this.rpp + "&any_kw=" + filter + "&include_primarycat=" + type;
+			var url = "http://api.bigoven.com/recipes?api_key=1hg3g4Dkwr6pSt22n00EfS01rz568IR6&pg=" + this.pg + "&rpp=" + this.rpp + "&any_kw=" + filter + "&include_primarycat=" + type;
 		}
 		$.ajax({
 	         type: "GET",
@@ -187,7 +187,10 @@ var DinnerModel = function() {
 	         success: function (data) {
 	            console.log(data);
 				this.notifyObservers(data.Results);
-	            }
+	            },
+	        error: function (jqXHR, textStatus, errorThrown) {
+	        	this.notifyObservers(textStatus);
+	        }
          });
 	}
 
@@ -198,7 +201,7 @@ var DinnerModel = function() {
 	//function that returns a dish of specific ID
 	this.getDish = function (id) {
 		console.log(id);
-		var url = "http://api.bigoven.com/recipe/" + id+ "?api_key=H9n1zb6es492fj87OxDtZM9s5sb29rW3";
+		var url = "http://api.bigoven.com/recipe/" + id+ "?api_key=1hg3g4Dkwr6pSt22n00EfS01rz568IR6";
 		$.ajax({
 	         type: "GET",
 	         dataType: 'json',

@@ -6,24 +6,25 @@ var selectController = function(mc, model, sv){
 
 	$("#selectInput").change(function() {
 		var choice = $("#selectInput").val();
+    var input = $("#searchInput").val();
         $("#searchInput").val("");
         $("#viewDishes").empty();
+        mc.loadingDishes(choice, input);
         model.resetPage();
-       	var dishes = model.getAllDishes(choice);
 	}).change();
 	
 	$("#searchButton").click(function(){
 	    var choice = $("#selectInput").val();
-	    var input = $("#searchInput").val();
+      var input = $("#searchInput").val();
 	   	$("#viewDishes").empty();
+      mc.loadingDishes(choice, input);
 	   	model.resetPage();
-	    var dishes = model.getAllDishes(choice, input);
 	});
 
    $(document).on('click', '.clickableDish', function(event) { 
        var dishID = $(this).attr("id");
        mc.previewDish();
-       model.getDish(dishID);
+       mc.previewDish(dishID);
    });
 
  $(document).ready(function(){  
@@ -31,7 +32,7 @@ jQuery(function($) {
     $('#viewDishes').on('scroll', function() {
         if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
           model.nextPage();
-   			  model.getAllDishes();
+          mc.loadingDishes();
         }
     })
 });
