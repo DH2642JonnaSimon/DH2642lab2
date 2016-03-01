@@ -84,7 +84,7 @@ var DinnerModel = function() {
 			for(d in this.menu){
 				amountOfIng = 0;
 		   		for(a in this.menu[d].Ingredients) {
-		   			amountOfIng += 1;
+		   			amountOfIng += this.menu[d].Ingredients[a];
 		   		}
 		       	var dishPrice = amountOfIng * this.numberOfGuests;
 		       	prices.push(dishPrice);
@@ -95,7 +95,7 @@ var DinnerModel = function() {
 			}
 		}else{
 			for(a in this.pendingDish.Ingredients) {
-		   		amountOfIng += 1;
+		   		amountOfIng += this.pendingDish.Ingredients[a].Quantity;
 		   	}
 		   	pendingPrice = amountOfIng * this.numberOfGuests;
 		   	var status = false;
@@ -106,12 +106,12 @@ var DinnerModel = function() {
 		   			status = true;
 		   			for(a in this.pendingDish.Ingredients) {
 		   				console.log("tja2");
-		   				amountOfIng += 1;
+		   				amountOfIng += this.pendingDish.Ingredients[a].Quantity;
 		   			}
 		   		}else{
 		   			for(a in this.menu[d].Ingredients) {
 		   				console.log("tja1");
-		   				amountOfIng += 1;
+		   				amountOfIng += this.menu[d].Ingredients[a].Quantity;
 		   			}
 
 		   		}

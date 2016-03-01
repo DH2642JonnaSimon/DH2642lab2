@@ -22,12 +22,12 @@ var dishPreview = function(container, model){
 		
 		for(d in dish.Ingredients){
 		    var quantity = guests*dish.Ingredients[d].Quantity;
-		    var price = 1 * model.getNumberOfGuests();
+		    var price = quantity;
 		    str += "<tr><td style='border: 0px !important;'>" + quantity.toFixed(2) + " " + dish.Ingredients[d].Unit + "</td><td style='border: 0px !important;'>";
 		    str += dish.Ingredients[d].Name + "</td><td style='border: 0px !important;'>";
 		    str += price.toFixed(2) + "</td><td style='border: 0px !important;'></tr>";
 		}
-		str += "<tr style='border-top: 1px solid #000;'><td style='text-align:right;border: 0px !important;' colspan='4'></td></tr>";
+		str += "<tr style='border-top: 1px solid #000;'><td style='text-align:right;border: 0px !important;' colspan='4'>"+ model.getTotalMenuPrice() +".00 SEK</td></tr>";
 		$("#ingredients").html(str);
 	}
 

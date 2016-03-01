@@ -29,7 +29,7 @@ var sideView = function(container, model){
 	   	for(d in menu){
 	   		var amountOfIng = 0;
 	   		for(a in menu[d].Ingredients) {
-	   			amountOfIng += 1;
+	   			amountOfIng += menu[d].Ingredients[a].Quantity;
 	   		}
 	       	var dishPrice = amountOfIng * model.getNumberOfGuests();
 	       	prices[count] = dishPrice;
@@ -54,7 +54,7 @@ var sideView = function(container, model){
 		    }
 		    amountOfIng = 0;
 		    for(a in dish.Ingredients) {
-	   			amountOfIng += 1;
+	   			amountOfIng += dish.Ingredients[a].Quantity;
 	   		}
 		   	$("#chart").append('<tr><td id="dish" style="text-align: left;">Pending</td><td id="price" style="text-align: right;">0.00</td></tr>');
 		    $("#chart").append('<tr><td></td><td id="totalPrice"></td></tr>');
