@@ -21,7 +21,7 @@ var dishPreview = function(container, model){
 		str += "<h3 style='width: 100%;'>Ingredients for " + guests  + " People</h3><tbody style='border-top: 1px solid #000;'>";
 		
 		for(d in dish.Ingredients){
-		    var quantity = dish.Ingredients[d].Quantity;
+		    var quantity = guests*dish.Ingredients[d].Quantity;
 		    var price = 1 * model.getNumberOfGuests();
 		    str += "<tr><td style='border: 0px !important;'>" + quantity.toFixed(2) + " " + dish.Ingredients[d].Unit + "</td><td style='border: 0px !important;'>";
 		    str += dish.Ingredients[d].Name + "</td><td style='border: 0px !important;'>";

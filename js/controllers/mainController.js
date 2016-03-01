@@ -29,15 +29,15 @@ var mainController = function(model,startView, sideView, selectDishView, dishPre
 	    model.addDishToMenu(penDish);
 	   	model.setPendingDish("");
 	    this.select_dish_view.show();
-	    $("#viewDishes").empty();
-	    model.getAllDishes($("#selectInput").val());
+	    //$("#viewDishes").empty();
+	    //model.getAllDishes($("#selectInput").val());
 	}
 	
 	this.denyDish = function(){
 	    this.dish_preview.hide();
 	    model.setPendingDish("");
 	    this.side_view.updateFunction();
-	    this.select_dish_view.show();
+	    this.select_dish_view.showDeny();
 	}
 
 	this.lastDishBack = function(){

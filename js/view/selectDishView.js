@@ -1,6 +1,6 @@
 var selectDishView = function(container, model){
 	this.cnt = container;
-	this.cnt.append ('<div id="selectDishView" class="col-xs-7 col-sm-9 col-md-9"><div id="selectDishBackground"><h3 id="selectDishHeader">SELECT DISH</h3><table class="table-responsive table-condensed" id="selectDishTable"><tr><td id="searchInputCell"><input id="searchInput" placeholder="Enter key words" class="form-control " type="text"></td><td id="searchButtonCell"><button id="searchButton" type="button" class="btn btn-warning btn-responsive">Search</button></td><td id="selectCell"><select class="form-control" id="selectInput"><option value="appetizer">Starter</option><option value="main%20dish">Main</option><option value="dessert">Dessert</option></select></td></tr></table></div><div id ="viewDishes" class="pre-scrollable"></div></div>');
+	this.cnt.append ('<div id="selectDishView" class="col-xs-7 col-sm-9 col-md-9"><div id="selectDishBackground"><h3 id="selectDishHeader">SELECT DISH</h3><table class="table-responsive table-condensed" id="selectDishTable"><tr><td id="searchInputCell"><input id="searchInput" placeholder="Enter key words" class="form-control " type="text"></td><td id="searchButtonCell"><button id="searchButton" type="button" class="btn btn-warning btn-responsive">Search</button></td><td id="selectCell"><select class="form-control" id="selectInput"><option value="appetizer">Starter</option><option value="main%20dish">Main</option><option value="dessert">Dessert</option></select></td></tr></table></div><div id ="viewDishes" class="pre-scrollable"><div class="table" id="viewDishesInner"></div></div></div>');
 	model.addObserver(this);
 	$("#selectDishView").hide();
 
@@ -12,11 +12,16 @@ var selectDishView = function(container, model){
 				height = $(this).height();
 			}
 		});
-		$('.dishHeadDiv').css('height', height);
+		$('.dishHeadDiv').css('height', height+10);
 		console.log(height);
 	
 		$("#viewDishes").css("height", $("#selectDishView").height()-$("#selectDishBackground").height()-10);
 
+	}
+
+	this.showDeny = function(){
+		$("#selectDishView").show();
+		$("#viewDishes").css("height", $("#selectDishView").height()-$("#selectDishBackground").height()-10);
 	}
 
 
@@ -29,7 +34,7 @@ var selectDishView = function(container, model){
 			return;
 		}
 		$("#viewDishes").css("height", $("#selectDishView").height()-$("#selectDishBackground").height()-10);
-
+		console.log(data);
 
 		var listId =[];
 		var listName =[];
@@ -38,7 +43,7 @@ var selectDishView = function(container, model){
 		var count = 0;
         var str = "";
         var dish = data;
-        str += "<div class='table' id='viewDishesInner'>";
+        str += "";
 		for(var x in dish){
 			if(!isNaN(x)){
 			    if(count == 0){
@@ -53,14 +58,7 @@ var selectDishView = function(container, model){
 			}
 		}
 		
-		if(count != 0){
-		    for(var i = count; count != 4; count++){
-		        str += "<div><div></div></div>";
-		    }
-		    str += "</div>";
-		}
-		
-		str += "</table></div>";
+		str += "";
 		$("#viewDishes").append(str);
 
 		var height = 0;
@@ -70,7 +68,7 @@ var selectDishView = function(container, model){
 			}
 		});
 		if(height != 0){
-			$('.dishHeadDiv').css('height', height);
+			$('.dishHeadDiv').css('height', height+10);
 		}
 	}
 
