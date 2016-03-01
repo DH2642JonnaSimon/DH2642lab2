@@ -16,6 +16,15 @@ var lastOverview = function (container, model) {
 }
 	this.show = function(){
 		$("#lastOverview").show();
+		var height = 0;
+		$('.dishHeadDiv').each(function() {
+			if(height < $(this).height()){
+				height = $(this).height();
+			}
+		});
+		if(height != 0){
+			$('.dishHeadDiv').css('height', height);
+		}
 		$("#mainRow").css("height", $("#lastOverview").height()-$("#headRow").height()-$("#buttonDiv2").height()-100);
 }
 
