@@ -28,13 +28,20 @@ var selectController = function(mc, model, sv){
    });
 
  	$(document).ready(function(){  
-	jQuery(function($) {
-    $('#viewDishes').on('scroll', function() {
+	  jQuery(function($) {
+      $('#viewDishes').on('scroll', function() {
         if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
           model.nextPage();
           mc.loadingDishes();
         }
-    })
-});
-});
+      })
+    });
+  });
+
+   $(document).on('click', '#tryAgain', function(event) { 
+      $("body").css("background-image", "none")
+      mc.newDinner();
+      model.getAllDishes("appetizer");
+   });
+
 }

@@ -1,5 +1,6 @@
-var previewController = function(mc){
+var previewController = function(mc, model, view){
 	this.mainController = mc;
+	this.view = view;
 
 	$("#confirm").click(function() {
 		mc.confirmDish();
@@ -9,5 +10,8 @@ var previewController = function(mc){
 	    mc.denyDish();
 	});
 
-
+	$(document).on('click', '#tryAgain2', function(event) { 
+      $("body").css("background-image", "none")
+      model.getDish(view.DID);
+   });
 }

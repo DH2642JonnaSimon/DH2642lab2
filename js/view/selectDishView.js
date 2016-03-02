@@ -43,7 +43,8 @@ var selectDishView = function(container, model){
 		var str = "";
 		if(data =="undefined" || data== null || data=="" || data=="error"){
 			if(data != "confirm" && data == "error"){
-				str += "<div id='loadImage2' style='display: table;text-align: center;background-color: white;'><div style='display:table-cell;vertical-align: middle;'><p>No connection to the server. Please reload the page and try again.</p></div></div>";	
+				str += "<div id='loadImage2' style='display: table;text-align: center;background-color: white;'><div style='display:table-cell;vertical-align: middle;'><p>No connection to the server. Please reload the page and try again.</p>";
+				str += '<button id="tryAgain" type="button" class="btn btn-warning btn-responsive">Try again</button></div></div>';	
 				$("#viewDishes").html(str);
 				return;
 			}else{
