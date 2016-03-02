@@ -20,7 +20,7 @@ var dishPreview = function(container, model){
 			$("#instructions").html(" ")
 			$("#headerContent").html(" ");
 			$("#ingredients").html(" ");
-			$("#dishPreview").append("<div id='error' style='display: table;text-align: center;'><div style='display:table-cell;vertical-align: middle;'><p>ERROR</p></div></div>");
+			$("#dishPreview").append("<div id='error' style='display: table;text-align: center;'><div style='display:table-cell;vertical-align: middle;'><p>No connection to the server. Please reload the page and try again.</p></div></div>");
 			return;
 		}
 		

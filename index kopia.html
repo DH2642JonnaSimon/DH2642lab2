@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dinner planner</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+
+  </head>
+  <body>
+  	
+	<div class="container-fluid" id="container">
+    <div id="jumbotron" class="jumbotron">
+          <div class="innerDivJumbo">
+            <h1 class="title" id="titleHeader">HOMELETTE</h1>
+            <i>
+              <p class="title" id="headerParagraph">From the best chefs in the world directly into your kitchen.</p>
+            </i>
+          </div> 
+    </div>
+		<div class="row row-eq-height" id="viewHolder">
+		</div>
+	</div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+
+
+
+	<!-- The application JavaScript code -->
+	<script src="js/app.js"></script>
+	<script src="js/model/dinnerModel.js"></script>
+  <script src="js/controllers/mainController.js"></script>
+  <script src="js/controllers/startController.js"></script>
+  <script src="js/controllers/sideController.js"></script>
+  <script src="js/controllers/selectController.js"></script>
+  <script src="js/controllers/previewController.js"></script>
+  <script src="js/controllers/lastOverviewController.js"></script>
+  <script src="js/controllers/fullRecipeController.js"></script>
+
+  <script src="js/view/startView.js"></script>
+  <script src="js/view/sideView.js"></script>
+  <script src="js/view/selectDishView.js"></script>
+  <script src="js/view/dishPreview.js"></script>
+  <script src="js/view/lastOverview.js"></script>
+  <script src="js/view/fullRecipeview.js"></script>
+  </body>
+</html>
