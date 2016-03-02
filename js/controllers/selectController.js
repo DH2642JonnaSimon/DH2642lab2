@@ -27,8 +27,8 @@ var selectController = function(mc, model, sv){
        mc.previewDish(dishID);
    });
 
- $(document).ready(function(){  
-jQuery(function($) {
+ 	$(document).ready(function(){  
+	jQuery(function($) {
     $('#viewDishes').on('scroll', function() {
         if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
           model.nextPage();

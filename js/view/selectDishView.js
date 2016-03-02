@@ -5,9 +5,9 @@ var selectDishView = function(container, model){
 	$("#selectDishView").hide();
 
 	this.show = function(confirm){
-		alert(confirm);
+		
 		if(confirm == "confirm"){
-			$("#loadImage").hide();
+			$("#loadImage").remove();
 		}
 		$("#selectDishView").show();
 		var height = 0;
@@ -34,16 +34,21 @@ var selectDishView = function(container, model){
 	}
 
 	this.loadingPage = function() {
-		$("#viewDishes").append("<div id='loadImage' style='display: table;text-align: center;'><div style='display:table-cell;vertical-align: middle;'><image src='images/loading.gif'></image></div></div>");
+		$("#viewDishes").append("<div id='loadImage2' style='display: table;text-align: center;'><div style='display:table-cell;vertical-align: middle;'><image src='images/loading.gif'></image></div></div>");
 
 	}
 
 	this.updateFunction = function(data){
-		$("#loadImage").remove();
+		$("#loadImage2").remove();
+		var str = "";
 		if(data =="undefined" || data== null || data=="" || data=="error"){
-			//alert("hej");
-			$("#viewDishes").html("<div id='loadImage' style='display: table;text-align: center;background-color: red;'><div style='display:table-cell;vertical-align: middle;'><p>ERROR</p></div></div>");		
-			return;
+			if(data != "confirm" && data == "error"){
+				str += "<div id='loadImage2' style='display: table;text-align: center;background-color: red;'><div style='display:table-cell;vertical-align: middle;'><p>ERROR</p></div></div>";	
+				$("#viewDishes").html(str);
+				return;
+			}else{
+				return;
+			}
 		} 
 		$("#viewDishes").css("height", $("#selectDishView").height()-$("#selectDishBackground").height()-10);
 
@@ -52,9 +57,9 @@ var selectDishView = function(container, model){
 		var listDescription =[];
 		var listImage =[];
 		var count = 0;
-        var str = "";
+        
         var dish = data;
-        str += "";
+       
 		for(var x in dish){
 			if(!isNaN(x)){
 			    if(count == 0){

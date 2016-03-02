@@ -5,17 +5,25 @@ var dishPreview = function(container, model){
 	$("#dishPreview").hide();
 
 	this.loadingPage = function() {
+		$("#imgeDiv").html(" ");
+			$("#instructions").html(" ")
+			$("#headerContent").html(" ");
+			$("#ingredients").html(" ");
 		$("#dishPreview").append("<div id='loadImage' style='display: table;text-align: center;'><div style='display:table-cell;vertical-align: middle;'><image src='images/loading.gif'></image></div></div>");
 	}
 
 	this.updateFunction = function(data) {
 		$("#loadImage").remove();
+		$("#error").remove();
 		if(data =="undefined" || data== null || data=="" || data=="error"){
-			if($("#viewDishes").html() == ""){
-				$("#viewDishes").html("<p>Couldn't connect to the server, please reload the page. :)</p>");
-			}	
+			$("#imgeDiv").html(" ");
+			$("#instructions").html(" ")
+			$("#headerContent").html(" ");
+			$("#ingredients").html(" ");
+			$("#dishPreview").append("<div id='error' style='display: table;text-align: center;'><div style='display:table-cell;vertical-align: middle;'><p>ERROR</p></div></div>");
 			return;
 		}
+		
 		var guests = model.getNumberOfGuests();
 		var dish = data;
 		$(".confirm").attr("id", dish.RecipeID);

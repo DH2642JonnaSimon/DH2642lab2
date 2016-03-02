@@ -16,9 +16,10 @@ var mainController = function(model,startView, sideView, selectDishView, dishPre
 	}
 	
 	this.previewDish = function(dishID){
+		$("div").scrollTop()
 	   this.select_dish_view.hide();
-	   this.dish_preview.loadingPage();
 	   this.dish_preview.show();
+	   this.dish_preview.loadingPage();
 	   model.getDish(dishID);
 	   //this.dish_preview.updateFunction();
 	   this.side_view.updateFunction();

@@ -212,7 +212,10 @@ var DinnerModel = function() {
 	            console.log(data);
 	            this.setPendingDish(data);
 				this.notifyObservers(data);
-	            }
+	            },
+	        error: function (jqXHR, textStatus, errorThrown) {
+	        	this.notifyObservers(textStatus);
+	        }
          });
 	}
 
